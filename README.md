@@ -31,3 +31,10 @@ https://www.youtube.com/watch?v=oFBGs4_jJ0Y&t=245s
   
 - 3d 모델 사이트  
 https://sketchfab.com/  
+
+## 배운것
+![캡처1](https://user-images.githubusercontent.com/87477736/220673371-84f01207-1c74-4d6f-9e83-57c20dfe42b6.PNG)  
+![캡처2](https://user-images.githubusercontent.com/87477736/220673402-57a04601-d519-4988-adda-8551f7dad2a7.PNG)  
+![캡처](https://user-images.githubusercontent.com/87477736/220673417-dda4aa3c-573a-45d6-937e-a936790d5fe6.PNG)  
+![ezgif com-optimize](https://user-images.githubusercontent.com/87477736/220672556-bf23749a-9aec-4d66-9834-0beae47434ae.gif)  
+![ezgif com-optimize (1)](https://user-images.githubusercontent.com/87477736/220673649-bfa6a866-bd88-4cd1-9823-9b5bf880a175.gif)  
