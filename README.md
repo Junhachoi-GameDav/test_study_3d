@@ -37,4 +37,6 @@ https://sketchfab.com/
 ![캡처2](https://user-images.githubusercontent.com/87477736/220673402-57a04601-d519-4988-adda-8551f7dad2a7.PNG)  
 ![캡처](https://user-images.githubusercontent.com/87477736/220673417-dda4aa3c-573a-45d6-937e-a936790d5fe6.PNG)  
 ![ezgif com-optimize](https://user-images.githubusercontent.com/87477736/220672556-bf23749a-9aec-4d66-9834-0beae47434ae.gif)  
+캐릭터 자료 출처 https://sketchfab.com/ 
 ![ezgif com-optimize (1)](https://user-images.githubusercontent.com/87477736/220673649-bfa6a866-bd88-4cd1-9823-9b5bf880a175.gif)  
+애니메이션 출처
