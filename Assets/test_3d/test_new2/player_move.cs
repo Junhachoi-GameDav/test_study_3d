@@ -16,6 +16,8 @@ public class player_move : MonoBehaviour
     public bool toggle_camera_rotation; //배그 알트 기능 또는 다크소울 타겟팅 카메라;
     public float smoothness = 10f;
 
+    float break_time;
+
     bool is_run;
     void Start()
     {
@@ -51,42 +53,70 @@ public class player_move : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            anime.SetFloat("is_run", 1f);
             is_run = true;
         }
         else
         {
+            anime.SetFloat("is_run", 0f);
             is_run = false;
         }
 
+        //배그 용
         //tronformdirection = 로컬에서 월드로 방향을 바꿔줌
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        //Vector3 forward = transform.TransformDirection(Vector3.forward);
+        //Vector3 right = transform.TransformDirection(Vector3.right);
+
+        //다크소울 용
+        Vector3 look_forward = new Vector3(camera.transform.forward.x, 0, camera.transform.forward.z).normalized;
+        Vector3 look_right = new Vector3(camera.transform.right.x, 0, camera.transform.right.z).normalized;
+
 
         float f_num = Input.GetAxisRaw("Vertical");
         float r_num = Input.GetAxisRaw("Horizontal");
 
-        Vector3 move_dir = forward * f_num + right * r_num;
+        float f_num_look = Input.GetAxis("Vertical");
+        float r_num_look = Input.GetAxis("Horizontal");
 
-        //transform.position += move_dir * apply_spped * Time.deltaTime;
+        Vector3 move_dir = look_forward * f_num + look_right * r_num;
+        Vector3 look_dir = look_forward * f_num_look + look_right * r_num_look;
 
-
+        
         controller.Move(move_dir.normalized * apply_spped * Time.deltaTime);
 
         if (!toggle_camera_rotation)
         {
-            //transform.LookAt(transform.);
             if (f_num != 0 || r_num != 0)
             {
+                break_time = 0;
+                transform.forward = look_dir;
                 anime.SetBool("is_walk", true);
+                anime.SetBool("is_break", false);
                 anime.SetInteger("is_walk_int", 1);
             }
             else
             {
                 anime.SetBool("is_walk", false);
+                if (break_time <= 4)
+                {
+                    break_time += Time.deltaTime;
+                }
+                else if( break_time >4 && break_time <= 7)
+                {
+                    break_time += Time.deltaTime;
+                    anime.SetBool("is_break", true);   
+                }
+                else
+                {
+                    anime.SetBool("is_break", false);
+                    break_time = 0;
+                }
             }
         }
         else if (f_num != 0 || r_num != 0)
         {
+            break_time = 0;
+            anime.SetBool("is_break", false);
             anime.SetBool("is_walk", true);
             if (f_num == 1)
             {
@@ -109,6 +139,22 @@ public class player_move : MonoBehaviour
         else
         {
             anime.SetBool("is_walk", false);
+            if (break_time <= 4)
+            {
+                break_time += Time.deltaTime;
+            }
+            else if (break_time > 4 && break_time <= 7)
+            {
+                break_time += Time.deltaTime;
+                anime.SetBool("is_break", true);
+            }
+            else
+            {
+                anime.SetBool("is_break", false);
+                break_time = 0;
+            }
         }
+
+
     }
 }

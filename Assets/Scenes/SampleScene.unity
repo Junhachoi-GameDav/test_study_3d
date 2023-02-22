@@ -617,8 +617,8 @@ MonoBehaviour:
   real_camera: {fileID: 963194228}
   dir_normalized: {x: 0, y: 0, z: 0}
   final_dir: {x: 0, y: 0, z: 0}
-  min_distance: 1
-  max_distance: 6
+  min_distance: 2
+  max_distance: 7
   final_distance: 0
   smoothness: 10
 --- !u!4 &2005188161 stripped
