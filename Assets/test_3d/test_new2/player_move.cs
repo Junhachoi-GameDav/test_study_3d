@@ -16,6 +16,9 @@ public class player_move : MonoBehaviour
     public bool toggle_camera_rotation; //배그 알트 기능 또는 다크소울 타겟팅 카메라;
     public float smoothness = 10f;
 
+    //
+    int b_num;
+
     //이동 값
     float f_num;
     float r_num;
@@ -24,9 +27,11 @@ public class player_move : MonoBehaviour
     //애니 시간 값
     float temp = 1;
     float cur_temp = 1;
+    float block_temp = 1;
 
     bool is_run;
     bool is_atk;
+    bool is_block;
     void Start()
     {
         anime = FindObjectOfType<Animator>();
@@ -42,9 +47,9 @@ public class player_move : MonoBehaviour
             toggle_camera_rotation = !toggle_camera_rotation;
             //Debug.Log("dd");
         }
-
         p_move();
         p_attack();
+        p_block();
     }
     
     private void LateUpdate()
@@ -180,6 +185,7 @@ public class player_move : MonoBehaviour
             cur_temp = 1.8f;
             is_atk = true;
             break_time = 0;
+            b_num = 1;
             anime.SetLayerWeight(1, 1);
             anime.SetTrigger("do_atk");
             anime.SetBool("is_break", false);
@@ -206,4 +212,31 @@ public class player_move : MonoBehaviour
         }
     }
     
+    void p_block()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            is_block = true;
+            anime.SetBool("is_blocking", true);
+            anime.SetLayerWeight(1, 1);
+            b_num = 0;
+            block_temp = 1;
+        }
+        else
+        {
+            if(b_num < 1)
+            {
+                anime.SetBool("is_blocking", false);
+                if (block_temp > 0)
+                {
+                    block_temp -= Time.deltaTime;
+                }
+                else
+                {
+                    b_num++;
+                }
+                anime.SetLayerWeight(1, block_temp);
+            }
+        }
+    }
 }
