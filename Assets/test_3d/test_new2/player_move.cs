@@ -181,8 +181,8 @@ public class player_move : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            temp = 1.5f;
-            cur_temp = 1.8f;
+            temp = 1f;
+            cur_temp = 1.4f;
             is_atk = true;
             break_time = 0;
             b_num = 1;
