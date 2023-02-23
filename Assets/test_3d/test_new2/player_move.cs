@@ -16,9 +16,15 @@ public class player_move : MonoBehaviour
     public bool toggle_camera_rotation; //배그 알트 기능 또는 다크소울 타겟팅 카메라;
     public float smoothness = 10f;
 
+    //이동 값
+    float f_num;
+    float r_num;
     float break_time;
+    //애니 시간 값
+    float temp = 1;
 
     bool is_run;
+    bool is_atk;
     void Start()
     {
         anime = FindObjectOfType<Animator>();
@@ -36,7 +42,9 @@ public class player_move : MonoBehaviour
         }
 
         p_move();
+        //p_attack();
     }
+    
     private void LateUpdate()
     {
         //다크소울 타겟 기능으로 쓸거임
@@ -72,8 +80,8 @@ public class player_move : MonoBehaviour
         Vector3 look_right = new Vector3(camera.transform.right.x, 0, camera.transform.right.z).normalized;
 
 
-        float f_num = Input.GetAxisRaw("Vertical");
-        float r_num = Input.GetAxisRaw("Horizontal");
+        f_num = Input.GetAxisRaw("Vertical");
+        r_num = Input.GetAxisRaw("Horizontal");
 
         float f_num_look = Input.GetAxis("Vertical");
         float r_num_look = Input.GetAxis("Horizontal");
@@ -154,7 +162,29 @@ public class player_move : MonoBehaviour
                 break_time = 0;
             }
         }
+    }
 
+    void p_attack()
+    {
+        if(f_num != 0 || r_num != 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                temp = 1;
+                break_time = 0;
+                anime.SetLayerWeight(1, temp);
+                //anime.SetTrigger("do_atk");
+            }
+        }
+
+        if (anime.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
+        {
+            if (temp > 0)
+            {
+                temp -= Time.deltaTime;
+            }
+            anime.SetLayerWeight(1, temp); // 1번째 레이어를 0으로 바꿈 즉 조건문 이후 비활성화
+        }
 
     }
 }
