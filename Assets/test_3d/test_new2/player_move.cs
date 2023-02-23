@@ -20,8 +20,10 @@ public class player_move : MonoBehaviour
     float f_num;
     float r_num;
     float break_time;
+
     //애니 시간 값
     float temp = 1;
+    float cur_temp = 1;
 
     bool is_run;
     bool is_atk;
@@ -61,6 +63,12 @@ public class player_move : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            if(controller.velocity == Vector3.zero)
+            {
+                anime.SetFloat("is_run", 0f);
+                is_run = false;
+                return;
+            }
             anime.SetFloat("is_run", 1f);
             is_run = true;
         }
@@ -168,12 +176,34 @@ public class player_move : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //temp = 1;
+            temp = 1.5f;
+            cur_temp = 1.8f;
+            is_atk = true;
             break_time = 0;
-            //anime.SetLayerWeight(1, temp);
+            anime.SetLayerWeight(1, 1);
             anime.SetTrigger("do_atk");
+            anime.SetBool("is_break", false);
         }
+        if (is_atk)
+        {
+            if (temp > 0)
+            {
+                temp -= Time.deltaTime; //딜레이
+            }
+            else
+            {
+                if(cur_temp > 0)
+                {
+                    cur_temp -= Time.deltaTime;
+                }
+                else
+                {
+                    is_atk = false;
+                }
+                anime.SetLayerWeight(1, cur_temp);
+            }
 
-        
+        }
     }
+    
 }
