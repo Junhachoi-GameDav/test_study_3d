@@ -42,7 +42,7 @@ public class player_move : MonoBehaviour
         }
 
         p_move();
-        //p_attack();
+        p_attack();
     }
     
     private void LateUpdate()
@@ -166,25 +166,14 @@ public class player_move : MonoBehaviour
 
     void p_attack()
     {
-        if(f_num != 0 || r_num != 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                temp = 1;
-                break_time = 0;
-                anime.SetLayerWeight(1, temp);
-                //anime.SetTrigger("do_atk");
-            }
+            //temp = 1;
+            break_time = 0;
+            //anime.SetLayerWeight(1, temp);
+            anime.SetTrigger("do_atk");
         }
 
-        if (anime.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
-        {
-            if (temp > 0)
-            {
-                temp -= Time.deltaTime;
-            }
-            anime.SetLayerWeight(1, temp); // 1번째 레이어를 0으로 바꿈 즉 조건문 이후 비활성화
-        }
-
+        
     }
 }

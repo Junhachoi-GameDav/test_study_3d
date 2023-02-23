@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53fa5ed95e7d44f46b9acf650c8c771d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk_speed: 5
+  walk_speed: 3.5
   run_speed: 12
   apply_spped: 0
   toggle_camera_rotation: 0
@@ -656,13 +656,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_obj: {fileID: 2005188161}
-  follow_speed: 11
+  follow_speed: 11.5
   mouse_sensitivity: 350
   clamp_angle: 70
   real_camera: {fileID: 963194228}
   dir_normalized: {x: 0, y: 0, z: 0}
   final_dir: {x: 0, y: 0, z: 0}
-  min_distance: 3
+  min_distance: 4
   max_distance: 7
   final_distance: 0
   smoothness: 10
