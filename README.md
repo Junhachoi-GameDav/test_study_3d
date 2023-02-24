@@ -32,6 +32,12 @@ https://www.youtube.com/watch?v=oFBGs4_jJ0Y&t=245s
 - 3d 모델 사이트  
 https://sketchfab.com/  
 
+- 유니티 부위별로 애니메이션 적용_오늘코딩  
+https://www.youtube.com/watch?v=gj3gMhMZWoE&t=359s  
+  
+- 유니티 애니메이션 리깅_절차적 애니메이션 _ Procedural Animation 이라고 치면 외국 영상 좋은거 많음  
+https://www.youtube.com/watch?v=aiuwSWYnqrU&t=147s  
+
 ## 배운것
 ![캡처1](https://user-images.githubusercontent.com/87477736/220673371-84f01207-1c74-4d6f-9e83-57c20dfe42b6.PNG)  
 ![캡처2](https://user-images.githubusercontent.com/87477736/220673402-57a04601-d519-4988-adda-8551f7dad2a7.PNG)  
