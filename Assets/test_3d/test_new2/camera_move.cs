@@ -42,11 +42,10 @@ public class camera_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("x   " + rot_x + "y    "+ rot_y);
         
         if (player.toggle_camera_rotation)
         {
-            rot_x += -(Input.GetAxis("Mouse Y"));
-            rot_y += Input.GetAxis("Mouse X");
             return;
         }
         
@@ -58,7 +57,7 @@ public class camera_move : MonoBehaviour
         rot_x = Mathf.Clamp(rot_x, -clamp_angle, clamp_angle); // x에서 ,최소(70도), 최대(70도)
 
         //회전관련 함수
-        Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rot_x, rot_y, 0),smoothness *Time.deltaTime);
+        Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rot_x, rot_y, 0), smoothness *Time.deltaTime);
         
         transform.rotation = rot;
     }
@@ -70,8 +69,10 @@ public class camera_move : MonoBehaviour
             Vector3 direction = obj_enemy.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, smoothness * Time.deltaTime);
-            
 
+            rot_x = -(rotation.eulerAngles.x); //굳
+            rot_y = rotation.eulerAngles.y;
+            
             player.transform.LookAt(target_en);
         }
         transform.position = Vector3.MoveTowards(transform.position, player_obj.position, follow_speed * Time.deltaTime);
