@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class camera_move : MonoBehaviour
 {
@@ -53,6 +54,12 @@ public class camera_move : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if (player.toggle_camera_rotation)
+        {
+            Vector3 target_en = Vector3.Scale(obj_enemy.position, new Vector3(1, 0, 1));
+            transform.LookAt(obj_enemy);
+            player.transform.LookAt(target_en);
+        }
         transform.position = Vector3.MoveTowards(transform.position, player_obj.position, follow_speed * Time.deltaTime);
 
 

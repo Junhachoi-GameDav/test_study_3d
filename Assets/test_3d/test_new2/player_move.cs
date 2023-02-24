@@ -58,8 +58,9 @@ public class player_move : MonoBehaviour
         if(toggle_camera_rotation == true)
         {
             //scale은 크기를 곱해준다.
-            Vector3 player_rotate = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player_rotate), Time.deltaTime * smoothness); 
+            Vector3 player_rotate = Vector3.Scale(camera.transform.forward *-1, new Vector3(1, 0, 1));
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player_rotate), Time.deltaTime * smoothness); 
+            transform.LookAt(player_rotate);
         }
     }
     void p_move()
