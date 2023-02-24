@@ -14,6 +14,8 @@ public class camera_move : MonoBehaviour
     float rot_x;
     float rot_y;
 
+    public int _num;
+
     public Transform real_camera;
     public Vector3 dir_normalized; //방향/
     public Vector3 final_dir; //최종 위치
@@ -23,7 +25,6 @@ public class camera_move : MonoBehaviour
     public float smoothness = 10;
 
     player_move player;
-
     void Start()
     {
         player = FindObjectOfType<player_move>();
@@ -41,10 +42,14 @@ public class camera_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (player.toggle_camera_rotation)
         {
+            rot_x += -(Input.GetAxis("Mouse Y"));
+            rot_y += Input.GetAxis("Mouse X");
             return;
         }
+        
         //마우스 떄문에 반대로 받는다.
         rot_x += -(Input.GetAxis("Mouse Y")) * mouse_sensitivity * Time.deltaTime; //위아래는 반대여서 
         rot_y += Input.GetAxis("Mouse X") * mouse_sensitivity * Time.deltaTime;
@@ -53,7 +58,8 @@ public class camera_move : MonoBehaviour
         rot_x = Mathf.Clamp(rot_x, -clamp_angle, clamp_angle); // x에서 ,최소(70도), 최대(70도)
 
         //회전관련 함수
-        Quaternion rot = Quaternion.Euler(rot_x, rot_y, 0);
+        Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rot_x, rot_y, 0),smoothness *Time.deltaTime);
+        
         transform.rotation = rot;
     }
     private void LateUpdate()
@@ -65,7 +71,7 @@ public class camera_move : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, smoothness * Time.deltaTime);
             
-            //transform.LookAt(obj_enemy);
+
             player.transform.LookAt(target_en);
         }
         transform.position = Vector3.MoveTowards(transform.position, player_obj.position, follow_speed * Time.deltaTime);

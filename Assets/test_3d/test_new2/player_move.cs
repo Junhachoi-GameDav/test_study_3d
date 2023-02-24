@@ -31,7 +31,7 @@ public class player_move : MonoBehaviour
 
     bool is_run;
     bool is_atk;
-    bool is_block;
+    //bool is_block;
     void Start()
     {
         anime = FindObjectOfType<Animator>();
@@ -222,7 +222,7 @@ public class player_move : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            is_block = true;
+            //is_block = true;
             anime.SetBool("is_blocking", true);
             anime.SetLayerWeight(1, 1);
             b_num = 0;
