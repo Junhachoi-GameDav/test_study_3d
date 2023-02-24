@@ -41,6 +41,10 @@ public class camera_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player.toggle_camera_rotation)
+        {
+            return;
+        }
         //마우스 떄문에 반대로 받는다.
         rot_x += -(Input.GetAxis("Mouse Y")) * mouse_sensitivity * Time.deltaTime; //위아래는 반대여서 
         rot_y += Input.GetAxis("Mouse X") * mouse_sensitivity * Time.deltaTime;
@@ -57,7 +61,11 @@ public class camera_move : MonoBehaviour
         if (player.toggle_camera_rotation)
         {
             Vector3 target_en = Vector3.Scale(obj_enemy.position, new Vector3(1, 0, 1));
-            transform.LookAt(obj_enemy);
+            Vector3 direction = obj_enemy.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, smoothness * Time.deltaTime);
+            
+            //transform.LookAt(obj_enemy);
             player.transform.LookAt(target_en);
         }
         transform.position = Vector3.MoveTowards(transform.position, player_obj.position, follow_speed * Time.deltaTime);
