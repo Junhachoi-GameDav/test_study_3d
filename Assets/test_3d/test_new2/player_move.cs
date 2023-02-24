@@ -16,6 +16,8 @@ public class player_move : MonoBehaviour
     public bool toggle_camera_rotation; //배그 알트 기능 또는 다크소울 타겟팅 카메라;
     public float smoothness = 10f;
 
+    public GameObject melee;
+
     //
     int b_num;
 
@@ -72,10 +74,13 @@ public class player_move : MonoBehaviour
             {
                 anime.SetFloat("is_run", 0f);
                 is_run = false;
-                return;
+                //return;
             }
-            anime.SetFloat("is_run", 1f);
-            is_run = true;
+            else
+            {
+                anime.SetFloat("is_run", 1f);
+                is_run = true;
+            }
         }
         else
         {
@@ -189,6 +194,7 @@ public class player_move : MonoBehaviour
             anime.SetLayerWeight(1, 1);
             anime.SetTrigger("do_atk");
             anime.SetBool("is_break", false);
+            melee.SetActive(true);
         }
         if (is_atk)
         {
@@ -207,6 +213,7 @@ public class player_move : MonoBehaviour
                     is_atk = false;
                 }
                 anime.SetLayerWeight(1, cur_temp);
+                melee.SetActive(false);
             }
 
         }
