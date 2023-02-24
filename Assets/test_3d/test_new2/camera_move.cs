@@ -5,6 +5,7 @@ using UnityEngine;
 public class camera_move : MonoBehaviour
 {
     public Transform player_obj;
+    public Transform obj_enemy;
     public float follow_speed=10; //속도
     [Range(100, 800)]public float mouse_sensitivity= 300f; //감도
     public float clamp_angle = 70f; // 각도
@@ -19,8 +20,12 @@ public class camera_move : MonoBehaviour
     public float max_distance;
     public float final_distance;
     public float smoothness = 10;
+
+    player_move player;
+
     void Start()
     {
+        player = FindObjectOfType<player_move>();
         //초기화
         rot_x = transform.localRotation.eulerAngles.x;
         rot_y = transform.localRotation.eulerAngles.y;
