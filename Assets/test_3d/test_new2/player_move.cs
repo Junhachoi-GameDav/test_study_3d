@@ -103,8 +103,8 @@ public class player_move : MonoBehaviour
         f_num = Input.GetAxisRaw("Vertical");
         r_num = Input.GetAxisRaw("Horizontal");
 
-        float f_num_look = Input.GetAxis("Vertical");
-        float r_num_look = Input.GetAxis("Horizontal");
+        float f_num_look = Input.GetAxisRaw("Vertical");
+        float r_num_look = Input.GetAxisRaw("Horizontal");
 
         Vector3 move_dir = look_forward * f_num + look_right * r_num;
         Vector3 look_dir = look_forward * f_num_look + look_right * r_num_look;
