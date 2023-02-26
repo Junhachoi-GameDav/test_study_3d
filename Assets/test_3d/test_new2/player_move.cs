@@ -13,6 +13,8 @@ public class player_move : MonoBehaviour
     public float run_speed = 9f;
     public float apply_spped;
 
+    public float turnSmoothing = 0.5f;
+
     public bool toggle_camera_rotation; //배그 알트 기능 또는 다크소울 타겟팅 카메라;
     public float smoothness = 10f;
 
@@ -31,7 +33,7 @@ public class player_move : MonoBehaviour
 
     bool is_run;
     bool is_atk;
-    //bool is_block;
+    
     void Start()
     {
         anime = FindObjectOfType<Animator>();
@@ -50,6 +52,7 @@ public class player_move : MonoBehaviour
         p_move();
         p_attack();
         p_block();
+        
     }
     
     private void LateUpdate()
@@ -114,7 +117,11 @@ public class player_move : MonoBehaviour
             if (f_num != 0 || r_num != 0)
             {
                 break_time = 0;
-                transform.forward = look_dir;
+
+                // 부드럽게 돌기(바라보기)
+                Vector3 player_rotate = Vector3.Scale(look_dir, new Vector3(1, 0, 1));
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player_rotate), Time.deltaTime * smoothness); 
+
                 anime.SetBool("is_walk", true);
                 anime.SetBool("is_break", false);
                 anime.SetInteger("is_walk_int", 1);
@@ -246,17 +253,7 @@ public class player_move : MonoBehaviour
         }
     }
 
-    // 부드럽게 돌기
-    /*
-    public void Repositioning()
-    {
-        if (lastDirection != Vector3.zero)
-        {
-            lastDirection.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(lastDirection);
-            Quaternion newRotation = Quaternion.Slerp(rBody.rotation, targetRotation, turnSmoothing);
-            rBody.MoveRotation(newRotation);
-        }
-    }
-    */
+    
+    
+    
 }
