@@ -245,4 +245,18 @@ public class player_move : MonoBehaviour
             }
         }
     }
+
+    // 부드럽게 돌기
+    /*
+    public void Repositioning()
+    {
+        if (lastDirection != Vector3.zero)
+        {
+            lastDirection.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(lastDirection);
+            Quaternion newRotation = Quaternion.Slerp(rBody.rotation, targetRotation, turnSmoothing);
+            rBody.MoveRotation(newRotation);
+        }
+    }
+    */
 }
