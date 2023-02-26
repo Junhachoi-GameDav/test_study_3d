@@ -11,19 +11,24 @@ public class player_move : MonoBehaviour
 
     public float walk_speed = 5f;
     public float run_speed = 9f;
-    public float apply_spped;
+    public float jump_force =7f;
+
+    float apply_spped;
 
     public float turnSmoothing = 0.5f;
 
     public bool toggle_camera_rotation; //배그 알트 기능 또는 다크소울 타겟팅 카메라;
     public float smoothness = 10f;
 
-    //
+    //블락 한번만
     int b_num;
 
     //이동 값
     float f_num;
     float r_num;
+    float f_num_look;
+    float r_num_look;
+
     float break_time;
 
     //애니 시간 값
@@ -31,9 +36,16 @@ public class player_move : MonoBehaviour
     float cur_temp = 1;
     float block_temp = 1;
 
+    //중력
+    float gravity = 9.8f;
+
     bool is_run;
     bool is_atk;
-    
+
+    //이동 백터값
+    Vector3 move_dir;
+    Vector3 look_dir;
+    Vector3 cur_move_dir;
     void Start()
     {
         anime = FindObjectOfType<Animator>();
@@ -44,28 +56,26 @@ public class player_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(2))
         {
             toggle_camera_rotation = !toggle_camera_rotation;
             //Debug.Log("dd");
         }
+        p_jump();
         p_move();
         p_attack();
         p_block();
         
     }
-    
-    private void LateUpdate()
+    void p_jump()
     {
-        //다크소울 타겟 기능으로 쓸거임
-        if(toggle_camera_rotation == true)
+        if (controller.isGrounded)
         {
-            //scale은 크기를 곱해준다.
-            //Vector3 player_rotate = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player_rotate), Time.deltaTime * smoothness); 
-            //transform.LookAt(player_rotate);
+            Debug.Log("123");
         }
     }
+
     void p_move()
     {
         apply_spped = is_run ? run_speed : walk_speed;
@@ -103,14 +113,16 @@ public class player_move : MonoBehaviour
         f_num = Input.GetAxisRaw("Vertical");
         r_num = Input.GetAxisRaw("Horizontal");
 
-        float f_num_look = Input.GetAxisRaw("Vertical");
-        float r_num_look = Input.GetAxisRaw("Horizontal");
+        f_num_look = Input.GetAxisRaw("Vertical");
+        r_num_look = Input.GetAxisRaw("Horizontal");
 
-        Vector3 move_dir = look_forward * f_num + look_right * r_num;
-        Vector3 look_dir = look_forward * f_num_look + look_right * r_num_look;
+        move_dir = look_forward * f_num + look_right * r_num;
+        look_dir = look_forward * f_num_look + look_right * r_num_look;
 
-        
+        //move_dir.y -= gravity * Time.deltaTime;
+        //움직임
         controller.Move(move_dir.normalized * apply_spped * Time.deltaTime);
+
 
         if (!toggle_camera_rotation)
         {
