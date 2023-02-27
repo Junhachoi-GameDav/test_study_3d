@@ -37,7 +37,7 @@ public class player_move : MonoBehaviour
     float block_temp = 1;
 
     //중력
-    float gravity = 9.8f;
+    float gravity = 20f;
 
     bool is_run;
     bool is_atk;
@@ -45,7 +45,7 @@ public class player_move : MonoBehaviour
     //이동 백터값
     Vector3 move_dir;
     Vector3 look_dir;
-    Vector3 cur_move_dir;
+    
     void Start()
     {
         anime = FindObjectOfType<Animator>();
@@ -62,7 +62,7 @@ public class player_move : MonoBehaviour
             toggle_camera_rotation = !toggle_camera_rotation;
             //Debug.Log("dd");
         }
-        p_jump();
+        //p_jump();
         p_move();
         p_attack();
         p_block();
@@ -72,7 +72,15 @@ public class player_move : MonoBehaviour
     {
         if (controller.isGrounded)
         {
-            Debug.Log("123");
+            Debug.Log("6666");
+            if (Input.GetButton("Jump"))
+            {
+                move_dir.y = jump_force;
+            }
+        }
+        else
+        {
+            Debug.Log("213");
         }
     }
 
@@ -119,7 +127,7 @@ public class player_move : MonoBehaviour
         move_dir = look_forward * f_num + look_right * r_num;
         look_dir = look_forward * f_num_look + look_right * r_num_look;
 
-        //move_dir.y -= gravity * Time.deltaTime;
+        move_dir.y -= gravity * Time.deltaTime;
         //움직임
         controller.Move(move_dir.normalized * apply_spped * Time.deltaTime);
 
