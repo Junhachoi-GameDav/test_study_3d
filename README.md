@@ -31,7 +31,11 @@ https://www.youtube.com/watch?v=oFBGs4_jJ0Y&t=245s
   
 - 3d 모델 사이트  
 https://sketchfab.com/  
-
+  
+- 텍스쳐 사이트  
+https://polyhaven.com/textures  
+https://ambientcg.com/  
+  
 - 유니티 부위별로 애니메이션 적용_오늘코딩  
 https://www.youtube.com/watch?v=gj3gMhMZWoE&t=359s  
   
