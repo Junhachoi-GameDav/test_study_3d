@@ -66,6 +66,7 @@ public class camera_move : MonoBehaviour
         if (player.toggle_camera_rotation)
         {
             Vector3 target_en = Vector3.Scale(obj_enemy.position, new Vector3(1, 0, 1));
+
             Vector3 direction = obj_enemy.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, smoothness * Time.deltaTime);
