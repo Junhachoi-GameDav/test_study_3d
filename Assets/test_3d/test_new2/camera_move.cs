@@ -57,7 +57,7 @@ public class camera_move : MonoBehaviour
         rot_x = Mathf.Clamp(rot_x, -clamp_angle, clamp_angle); // x에서 ,최소(70도), 최대(70도)
 
         //회전관련 함수
-        Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rot_x, rot_y, 0), smoothness *Time.deltaTime);
+        Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rot_x, player.toggle_camera_rotation? 0:rot_y, 0), smoothness *Time.deltaTime);
         
         transform.rotation = rot;
     }
