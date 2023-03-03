@@ -32,11 +32,11 @@ namespace sg
             {
                 v = 1;
             }
-            else if(vertical_movement < 0 && vertical_movement < -0.55f)
+            else if(vertical_movement < 0 && vertical_movement > -0.55f)
             {
                 v = -0.5f;
             }
-            else if(vertical_movement > -0.55f)
+            else if(vertical_movement < -0.55f)
             {
                 v = -1;
             }
@@ -55,11 +55,11 @@ namespace sg
             {
                 h = 1;
             }
-            else if (horizontal_movement < 0 && horizontal_movement < -0.55f)
+            else if (horizontal_movement < 0 && horizontal_movement > -0.55f)
             {
                 h = -0.5f;
             }
-            else if (horizontal_movement > -0.55f)
+            else if (horizontal_movement < -0.55f)
             {
                 h = -1;
             }

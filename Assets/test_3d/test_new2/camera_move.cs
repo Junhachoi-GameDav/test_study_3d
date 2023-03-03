@@ -76,6 +76,10 @@ public class camera_move : MonoBehaviour
             
             player.transform.LookAt(target_en);
         }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player_obj.position, follow_speed * Time.deltaTime);
+        }
         transform.position = Vector3.MoveTowards(transform.position, player_obj.position, follow_speed * Time.deltaTime);
 
 
