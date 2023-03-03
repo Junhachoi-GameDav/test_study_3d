@@ -411,6 +411,8 @@ GameObject:
   - component: {fileID: 983616549}
   - component: {fileID: 983616548}
   - component: {fileID: 983616547}
+  - component: {fileID: 983616551}
+  - component: {fileID: 983616550}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -464,6 +466,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983616550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983616546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcba8ea33b7d254f96a1e839bbaa880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_transform: {fileID: 0}
+  animater_h: {fileID: 0}
+  rigid: {fileID: 0}
+  normal_camera: {fileID: 0}
+  movement_speed: 5
+  rotation_speed: 10
+--- !u!114 &983616551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983616546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9c8bae4ba2c9a499910fb075842515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontal: 0
+  vertical: 0
+  move_amount: 0
+  mouse_x: 0
+  mouse_y: 0
 --- !u!1 &1480222916
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,3 +585,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2057013960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 41efc1acc0e5d504f9d1471a415f42e3, type: 3}
+  m_PrefabInstance: {fileID: 854749950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2057013962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057013960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a391c8ce464c64492aa837b5e1f192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anime: {fileID: 0}
+  can_rotate: 1

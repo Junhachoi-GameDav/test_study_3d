@@ -13,6 +13,8 @@ namespace sg
 
         [HideInInspector]
         public Transform my_transform;
+        [HideInInspector]
+        public animater_handler animater_h;
 
         public new Rigidbody rigid;
         public GameObject normal_camera;
@@ -29,6 +31,8 @@ namespace sg
         {
             rigid = GetComponent<Rigidbody>();
             input_h = GetComponent<input_handler>();
+            animater_h = GetComponentInChildren<animater_handler>();
+            animater_h.initialize();
 
             camera_obj = Camera.main.transform;
             my_transform = transform;
@@ -50,6 +54,11 @@ namespace sg
 
             Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
             rigid.velocity = projected_velocity;
+
+            if (animater_h.can_rotate)
+            {
+                handle_rotation(delta);
+            }
 
         }
 
