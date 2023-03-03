@@ -55,6 +55,10 @@ namespace sg
             Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
             rigid.velocity = projected_velocity;
 
+
+            animater_h.updete_animation_value(input_h.move_amount, 0);
+
+
             if (animater_h.can_rotate)
             {
                 handle_rotation(delta);
