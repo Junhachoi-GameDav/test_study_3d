@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_manager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+namespace sg
+{
+    public class player_manager : MonoBehaviour
     {
-        
+        input_handler input_h;
+        Animator anime;
+
+        void Start()
+        {
+            input_h = GetComponent<input_handler>();
+            anime = GetComponentInChildren<Animator>();
+        }
+
+        void Update()
+        {
+            input_h.is_interacting = anime.GetBool("is_interacting");
+            input_h.roll_flag = false;
+        }
     }
 }
+

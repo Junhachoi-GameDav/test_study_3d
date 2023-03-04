@@ -7,6 +7,8 @@ namespace sg
     public class animater_handler : MonoBehaviour
     {
         public Animator anime;
+        public input_handler input_h;
+        public player_locomotion player_lo;
         int vertical;
         int horizontal;
         public bool can_rotate;
@@ -14,6 +16,8 @@ namespace sg
         public void initialize()
         {
             anime = GetComponent<Animator>();
+            input_h = GetComponentInParent<input_handler>();
+            player_lo = GetComponentInParent<player_locomotion>();
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");
 
@@ -87,6 +91,21 @@ namespace sg
         public void stoprotate()
         {
             can_rotate = false;
+        }
+
+        private void OnAnimatorMove() //애니메이션이랑 같이 움직임
+        {
+            if(input_h.is_interacting == false)
+            {
+                return;
+            }
+
+            float delta = Time.deltaTime;
+            player_lo.rigid.drag = 0;
+            Vector3 delta_position = anime.deltaPosition;
+            delta_position.y = 0;
+            Vector3 velocity = delta_position / delta;
+            player_lo.rigid.velocity = velocity;
         }
     }
 }

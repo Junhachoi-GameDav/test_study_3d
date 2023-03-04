@@ -14,6 +14,7 @@ namespace sg
 
         public bool b_input;
         public bool roll_flag;
+        public bool is_interacting;
 
         Player_controller inputActions;
 
