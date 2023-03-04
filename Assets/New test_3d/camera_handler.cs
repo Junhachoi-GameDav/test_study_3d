@@ -44,6 +44,7 @@ namespace sg
         public void follow_target(float delta)
         {
             Vector3 target_position = Vector3.SmoothDamp(my_transform.position, target_transform.position, ref camera_follow_velocity, delta / follow_speed);
+            //Vector3 target_position = Vector3.Lerp(my_transform.position, target_transform.position, delta / follow_speed);
             my_transform.position = target_position;
 
             handle_camera_collisions(delta);
