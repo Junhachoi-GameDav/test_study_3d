@@ -13,7 +13,7 @@ namespace sg
         public float mouse_y;
 
         public bool b_input;
-        public bool roll_frag;
+        public bool roll_flag;
 
         Player_controller inputActions;
 
@@ -70,11 +70,11 @@ namespace sg
         private void handle_rolling_input(float delta)
         {
             //왼쪽 피연산자가 오른쪽 피연산자와 같으면 참, 다르면 거짓
-            b_input = inputActions.playeractions.roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
-
+            //b_input = inputActions.playeractions.roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+            b_input = inputActions.playeractions.roll.triggered; //최신버전은 이것으로 해야함
             if (b_input)
             {
-                roll_frag = true;
+                roll_flag = true;
             }
         }
     }

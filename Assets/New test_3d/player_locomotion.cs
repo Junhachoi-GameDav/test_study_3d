@@ -44,7 +44,6 @@ namespace sg
             float delta = Time.deltaTime;
 
             input_h.tick_input(delta);
-
             handle_movement(delta);
             handle_rolling_sprinting(delta);
         }
@@ -107,14 +106,14 @@ namespace sg
                 return;
             }
             
-            if (input_h.roll_frag)
+            if (input_h.roll_flag)
             {
                 move_dir = camera_obj.forward * input_h.vertical;
                 move_dir += camera_obj.right * input_h.horizontal;
                 
                 if(input_h.move_amount > 0) //rolling
                 {
-                    animater_h.player_target_animation("rolling", true);
+                    animater_h.player_target_animation("Rolling", true);
                     move_dir.y = 0;
                     Quaternion roll_rotation = Quaternion.LookRotation(move_dir);
                     my_transform.rotation = roll_rotation;
