@@ -48,6 +48,7 @@ namespace sg
             move_dir = camera_obj.forward * input_h.vertical;
             move_dir += camera_obj.right * input_h.horizontal;
             move_dir.Normalize();
+            move_dir.y = 0;
 
             float speed = movement_speed;
             move_dir *= speed;

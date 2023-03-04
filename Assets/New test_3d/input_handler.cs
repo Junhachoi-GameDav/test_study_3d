@@ -14,8 +14,26 @@ namespace sg
 
         Player_controller inputActions;
 
+        camera_handler cam_handler;
+
         Vector2 movement_input;
         Vector2 camera_input;
+
+        private void Awake()
+        {
+            cam_handler = camera_handler.cam_singleton;
+        }
+
+        private void FixedUpdate()
+        {
+            float delta = Time.deltaTime;
+
+            if(cam_handler != null)
+            {
+                cam_handler.follow_target(delta);
+                cam_handler.handle_camera_rotation(delta, mouse_x, mouse_y);
+            }
+        }
 
         public void OnEnable()
         {
