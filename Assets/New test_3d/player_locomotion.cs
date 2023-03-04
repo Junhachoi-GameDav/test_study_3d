@@ -45,26 +45,8 @@ namespace sg
 
             input_h.tick_input(delta);
 
-            move_dir = camera_obj.forward * input_h.vertical;
-            move_dir += camera_obj.right * input_h.horizontal;
-            move_dir.Normalize();
-            move_dir.y = 0;
-
-            float speed = movement_speed;
-            move_dir *= speed;
-
-            Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
-            rigid.velocity = projected_velocity;
-
-
-            animater_h.updete_animation_value(input_h.move_amount, 0);
-
-
-            if (animater_h.can_rotate)
-            {
-                handle_rotation(delta);
-            }
-
+            handle_movement(delta);
+            handle_rolling_sprinting(delta);
         }
 
         #region movement
@@ -93,6 +75,55 @@ namespace sg
             Quaternion target_rotation = Quaternion.Slerp(my_transform.rotation, t_r, r_s * delta);
 
             my_transform.rotation = target_rotation;
+        }
+
+        public void handle_movement(float delta)
+        {
+            move_dir = camera_obj.forward * input_h.vertical;
+            move_dir += camera_obj.right * input_h.horizontal;
+            move_dir.Normalize();
+            move_dir.y = 0;
+
+            float speed = movement_speed;
+            move_dir *= speed;
+
+            Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
+            rigid.velocity = projected_velocity;
+
+
+            animater_h.updete_animation_value(input_h.move_amount, 0);
+
+
+            if (animater_h.can_rotate)
+            {
+                handle_rotation(delta);
+            }
+        }
+
+        public void handle_rolling_sprinting(float delta)
+        {
+            if (animater_h.anime.GetBool("is_interacting"))
+            {
+                return;
+            }
+            
+            if (input_h.roll_frag)
+            {
+                move_dir = camera_obj.forward * input_h.vertical;
+                move_dir += camera_obj.right * input_h.horizontal;
+                
+                if(input_h.move_amount > 0) //rolling
+                {
+                    animater_h.player_target_animation("rolling", true);
+                    move_dir.y = 0;
+                    Quaternion roll_rotation = Quaternion.LookRotation(move_dir);
+                    my_transform.rotation = roll_rotation;
+                }
+                else // step back
+                {
+                    animater_h.player_target_animation("JumpLand", true);
+                }
+            }
         }
         #endregion
     }

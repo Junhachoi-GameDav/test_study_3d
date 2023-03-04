@@ -12,6 +12,9 @@ namespace sg
         public float mouse_x;
         public float mouse_y;
 
+        public bool b_input;
+        public bool roll_frag;
+
         Player_controller inputActions;
 
         camera_handler cam_handler;
@@ -52,6 +55,7 @@ namespace sg
         public void tick_input(float delta)
         {
             move_input(delta);
+            handle_rolling_input(delta);
         }
         private void move_input(float delta)
         {
@@ -61,6 +65,17 @@ namespace sg
 
             mouse_x = camera_input.x;
             mouse_y = camera_input.y;
+        }
+
+        private void handle_rolling_input(float delta)
+        {
+            //왼쪽 피연산자가 오른쪽 피연산자와 같으면 참, 다르면 거짓
+            b_input = inputActions.playeractions.roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+
+            if (b_input)
+            {
+                roll_frag = true;
+            }
         }
     }
 
