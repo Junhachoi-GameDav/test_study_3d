@@ -24,7 +24,7 @@ namespace sg
 
         }
 
-        public void updete_animation_value(float vertical_movement, float horizontal_movement)
+        public void updete_animation_value(float vertical_movement, float horizontal_movement, bool is_sprinting)
         {
             #region vertical
             float v = 0;
@@ -72,6 +72,12 @@ namespace sg
                 h = 0;
             }
             #endregion
+
+            if (is_sprinting)
+            {
+                v = 2;
+                h = horizontal_movement;
+            }
 
             anime.SetFloat(vertical, v, 0.1f, Time.deltaTime);
             anime.SetFloat(horizontal, h, 0.1f, Time.deltaTime);

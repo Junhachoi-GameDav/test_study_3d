@@ -20,6 +20,7 @@ namespace sg
         {
             input_h.is_interacting = anime.GetBool("is_interacting");
             input_h.roll_flag = false;
+            input_h.sprint_flag = false;
         }
     }
 }

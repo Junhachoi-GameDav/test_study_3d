@@ -23,9 +23,11 @@ namespace sg
         [SerializeField]
         float movement_speed = 5f;
         [SerializeField]
+        float sprint_speed = 7f;
+        [SerializeField]
         float rotation_speed = 10f;
 
-
+        public bool is_sprinting;
 
         void Start()
         {
@@ -43,9 +45,12 @@ namespace sg
         {
             float delta = Time.deltaTime;
 
+            is_sprinting = input_h.b_input;
             input_h.tick_input(delta);
             handle_movement(delta);
             handle_rolling_sprinting(delta);
+
+
         }
 
         #region movement
@@ -78,19 +83,34 @@ namespace sg
 
         public void handle_movement(float delta)
         {
+            if (animater_h.anime.GetBool("is_interacting"))
+            {
+                return;
+            }
+
             move_dir = camera_obj.forward * input_h.vertical;
             move_dir += camera_obj.right * input_h.horizontal;
             move_dir.Normalize();
             move_dir.y = 0;
 
             float speed = movement_speed;
-            move_dir *= speed;
+            
+            if (input_h.sprint_flag)
+            {
+                speed = sprint_speed;
+                is_sprinting = true;
+                move_dir *= speed;
+            }
+            else
+            {
+                move_dir *= speed;
+            }
 
             Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
             rigid.velocity = projected_velocity;
 
 
-            animater_h.updete_animation_value(input_h.move_amount, 0);
+            animater_h.updete_animation_value(input_h.move_amount, 0, is_sprinting);
 
 
             if (animater_h.can_rotate)

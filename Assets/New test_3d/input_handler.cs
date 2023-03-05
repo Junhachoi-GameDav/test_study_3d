@@ -13,7 +13,11 @@ namespace sg
         public float mouse_y;
 
         public bool b_input;
+
         public bool roll_flag;
+        public bool sprint_flag;
+        public float roll_input_timer;
+
         public bool is_interacting;
 
         Player_controller inputActions;
@@ -72,10 +76,22 @@ namespace sg
         {
             //왼쪽 피연산자가 오른쪽 피연산자와 같으면 참, 다르면 거짓
             //b_input = inputActions.playeractions.roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
-            b_input = inputActions.playeractions.roll.triggered; //최신버전은 이것으로 해야함
+            //b_input = inputActions.playeractions.roll.triggered; //최신버전은 이것으로 해야함___ 이건 트리거라서 한번만 된다.
+            b_input = inputActions.playeractions.roll.IsPressed(); //또는 이것
             if (b_input)
             {
-                roll_flag = true;
+                roll_input_timer += delta;
+                sprint_flag = true;
+            }
+            else
+            {
+                if(roll_input_timer >0 && roll_input_timer < 0.5f)
+                {
+                    sprint_flag = false;
+                    roll_flag = true;
+                }
+
+                roll_input_timer = 0;
             }
         }
     }
