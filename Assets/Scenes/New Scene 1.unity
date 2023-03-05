@@ -954,7 +954,7 @@ MonoBehaviour:
   movement_speed: 5
   sprint_speed: 7
   rotation_speed: 10
-  falling_speed: 80
+  falling_speed: 45
 --- !u!114 &983616551
 MonoBehaviour:
   m_ObjectHideFlags: 0

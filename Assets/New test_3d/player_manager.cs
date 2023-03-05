@@ -19,6 +19,7 @@ namespace sg
         public bool is_in_air;
         public bool is_ground;
 
+        float delta;
 
         private void Awake()
         {
@@ -33,8 +34,8 @@ namespace sg
 
         void Update()
         {
-            float delta = Time.deltaTime;
-
+            delta = Time.deltaTime;
+            
             is_interacting = anime.GetBool("is_interacting");
 
             input_h.tick_input(delta);

@@ -195,7 +195,7 @@ namespace sg
                     }
                     else
                     {
-                        animater_h.player_target_animation("empty", false);
+                        animater_h.player_target_animation("Blend Tree", false);
                         in_air_timer = 0;
                     }
                     player_mng.is_in_air = false;
