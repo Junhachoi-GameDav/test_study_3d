@@ -6,6 +6,7 @@ namespace sg
 {
     public class player_locomotion : MonoBehaviour
     {
+        player_manager player_mng;
         Transform camera_obj;
         input_handler input_h;
 
@@ -19,7 +20,7 @@ namespace sg
         public new Rigidbody rigid;
         public GameObject normal_camera;
 
-        [Header("Stats")]
+        [Header("Movement Stats")]
         [SerializeField]
         float movement_speed = 5f;
         [SerializeField]
@@ -27,10 +28,9 @@ namespace sg
         [SerializeField]
         float rotation_speed = 10f;
 
-        public bool is_sprinting;
-
         void Start()
         {
+            player_mng = GetComponent<player_manager>();
             rigid = GetComponent<Rigidbody>();
             input_h = GetComponent<input_handler>();
             animater_h = GetComponentInChildren<animater_handler>();
@@ -38,18 +38,6 @@ namespace sg
 
             camera_obj = Camera.main.transform;
             my_transform = transform;
-
-        }
-
-        public void Update()
-        {
-            float delta = Time.deltaTime;
-
-            is_sprinting = input_h.b_input;
-            input_h.tick_input(delta);
-            handle_movement(delta);
-            handle_rolling_sprinting(delta);
-
 
         }
 
@@ -83,7 +71,7 @@ namespace sg
 
         public void handle_movement(float delta)
         {
-            if (animater_h.anime.GetBool("is_interacting"))
+            if (input_h.roll_flag)
             {
                 return;
             }
@@ -98,7 +86,7 @@ namespace sg
             if (input_h.sprint_flag)
             {
                 speed = sprint_speed;
-                is_sprinting = true;
+                player_mng.is_sprinting = true;
                 move_dir *= speed;
             }
             else
@@ -110,7 +98,7 @@ namespace sg
             rigid.velocity = projected_velocity;
 
 
-            animater_h.updete_animation_value(input_h.move_amount, 0, is_sprinting);
+            animater_h.updete_animation_value(input_h.move_amount, 0, player_mng.is_sprinting);
 
 
             if (animater_h.can_rotate)

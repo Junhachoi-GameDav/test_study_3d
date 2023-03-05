@@ -6,15 +6,17 @@ namespace sg
 {
     public class animater_handler : MonoBehaviour
     {
+        player_manager player_mng;
         public Animator anime;
-        public input_handler input_h;
-        public player_locomotion player_lo;
+        input_handler input_h;
+        player_locomotion player_lo;
         int vertical;
         int horizontal;
         public bool can_rotate;
 
         public void initialize()
         {
+            player_mng = GetComponentInParent<player_manager>();
             anime = GetComponent<Animator>();
             input_h = GetComponentInParent<input_handler>();
             player_lo = GetComponentInParent<player_locomotion>();
@@ -101,7 +103,7 @@ namespace sg
 
         private void OnAnimatorMove() //애니메이션이랑 같이 움직임
         {
-            if(input_h.is_interacting == false)
+            if(player_mng.is_interacting == false)
             {
                 return;
             }

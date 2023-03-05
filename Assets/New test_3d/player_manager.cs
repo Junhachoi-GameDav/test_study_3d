@@ -9,18 +9,51 @@ namespace sg
     {
         input_handler input_h;
         Animator anime;
+        camera_handler cam_handler;
+        player_locomotion player_lo;
 
+        public bool is_interacting;
+
+        [Header("Player Flags")]
+        public bool is_sprinting;
+
+        private void Awake()
+        {
+            cam_handler = camera_handler.cam_singleton;
+        }
         void Start()
         {
             input_h = GetComponent<input_handler>();
             anime = GetComponentInChildren<Animator>();
+            player_lo = GetComponent<player_locomotion>();
         }
 
         void Update()
         {
-            input_h.is_interacting = anime.GetBool("is_interacting");
+            float delta = Time.deltaTime;
+
+            is_interacting = anime.GetBool("is_interacting");
+
+            input_h.tick_input(delta);
+            player_lo.handle_movement(delta);
+            player_lo.handle_rolling_sprinting(delta);
+        }
+        private void FixedUpdate()
+        {
+            float delta = Time.deltaTime;
+
+            if (cam_handler != null)
+            {
+                cam_handler.follow_target(delta);
+                cam_handler.handle_camera_rotation(delta, input_h.mouse_x, input_h.mouse_y);
+            }
+        }
+        private void LateUpdate()
+        {
+           
             input_h.roll_flag = false;
             input_h.sprint_flag = false;
+            is_sprinting = input_h.b_input;
         }
     }
 }
