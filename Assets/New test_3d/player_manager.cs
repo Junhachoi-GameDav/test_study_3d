@@ -16,6 +16,9 @@ namespace sg
 
         [Header("Player Flags")]
         public bool is_sprinting;
+        public bool is_in_air;
+        public bool is_ground;
+
 
         private void Awake()
         {
@@ -37,6 +40,7 @@ namespace sg
             input_h.tick_input(delta);
             player_lo.handle_movement(delta);
             player_lo.handle_rolling_sprinting(delta);
+            player_lo.handle_falling(delta, player_lo.move_dir);
         }
         private void FixedUpdate()
         {
@@ -54,6 +58,11 @@ namespace sg
             input_h.roll_flag = false;
             input_h.sprint_flag = false;
             is_sprinting = input_h.b_input;
+
+            if (is_in_air)
+            {
+                player_lo.in_air_timer = player_lo.in_air_timer + Time.deltaTime;
+            }
         }
     }
 }

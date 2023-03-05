@@ -911,9 +911,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1.6
+  m_Height: 1.31
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &983616549
 Transform:
   m_ObjectHideFlags: 0
@@ -942,12 +942,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfcba8ea33b7d254f96a1e839bbaa880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move_dir: {x: 0, y: 0, z: 0}
   my_transform: {fileID: 0}
   animater_h: {fileID: 0}
   rigid: {fileID: 0}
   normal_camera: {fileID: 0}
+  ground_detection_ray_start_point: 0.5
+  min_Distance_needed_to_begin_fall: 1
+  ground_direction_ray_distance: 0.2
+  in_air_timer: 0
   movement_speed: 5
+  sprint_speed: 7
   rotation_speed: 10
+  falling_speed: 80
 --- !u!114 &983616551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,7 +974,8 @@ MonoBehaviour:
   mouse_y: 0
   b_input: 0
   roll_flag: 0
-  is_interacting: 0
+  sprint_flag: 0
+  roll_input_timer: 0
 --- !u!114 &983616552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,6 +988,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feba2a198959e14580ea9f30c8c2884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is_interacting: 0
+  is_sprinting: 0
+  is_in_air: 0
+  is_ground: 0
 --- !u!1 &995858352
 GameObject:
   m_ObjectHideFlags: 0
@@ -8227,8 +8239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anime: {fileID: 0}
-  input_h: {fileID: 0}
-  player_lo: {fileID: 0}
   can_rotate: 1
 --- !u!114 &5002248976180742285
 MonoBehaviour:
