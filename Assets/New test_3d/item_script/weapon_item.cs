@@ -5,19 +5,11 @@ using UnityEngine;
 
 namespace sg
 {
-    public class weapon_item : MonoBehaviour
+    [CreateAssetMenu(menuName = "Items/Weapon Item")]
+    public class weapon_item : item
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public GameObject model_prefab;
+        public bool is_unarmed;
     }
 }
 
