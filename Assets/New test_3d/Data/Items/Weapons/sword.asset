@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item_icon: {fileID: 0}
   item_name: sword
-  model_prefab: {fileID: 8125755928295525761, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
+  model_prefab: {fileID: 7527670950628548901, guid: 1a53dbfa2dc834c43ba8b106cf964115, type: 3}
   is_unarmed: 0
