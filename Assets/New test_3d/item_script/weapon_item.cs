@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace sg
 {
-    [CreateAssetMenu(menuName = "Items/Weapon Item")]
+    [CreateAssetMenu(menuName = "Items/Weapons Item")]
     public class weapon_item : item
     {
         public GameObject model_prefab;
