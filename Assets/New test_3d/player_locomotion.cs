@@ -233,17 +233,12 @@ namespace sg
                 }
             }
 
-            if (player_mng.is_ground)
+            if (player_mng.is_interacting || input_h.move_amount >0)
             {
-                /*
-                if(player_mng.is_interacting || input_h.move_amount > 0)
-                {
-                    my_transform.position = Vector3.Lerp(my_transform.position, target_position, Time.deltaTime);
-                }
-                else
-                {
-                    my_transform.position = target_position;
-                }*/
+                my_transform.position = Vector3.Lerp(my_transform.position, target_position, Time.deltaTime / 0.1f);
+            }
+            else
+            {
                 my_transform.position = target_position;
             }
         }
