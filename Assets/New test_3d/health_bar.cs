@@ -10,6 +10,10 @@ namespace sg
     {
         public Slider slider;
 
+        private void Start()
+        {
+            slider = GetComponent<Slider>();
+        }
         public void set_max_health(int max_health)
         {
             slider.maxValue = max_health;
