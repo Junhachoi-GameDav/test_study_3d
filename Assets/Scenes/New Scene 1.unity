@@ -1530,7 +1530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   right_weapon: {fileID: 11400000, guid: 441e786f5b360fe49b6b2f87d0d95ed3, type: 2}
-  left_weapon: {fileID: 11400000, guid: 441e786f5b360fe49b6b2f87d0d95ed3, type: 2}
+  left_weapon: {fileID: 0}
 --- !u!114 &983616554
 MonoBehaviour:
   m_ObjectHideFlags: 0

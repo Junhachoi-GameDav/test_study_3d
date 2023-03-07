@@ -43956,7 +43956,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0.56666666
-    functionName: close_right_damage_collider
+    functionName: open_right_damage_collider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

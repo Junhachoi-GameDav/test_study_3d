@@ -21,12 +21,10 @@ namespace sg
                 if (w_slots.is_left_hand_slot)
                 {
                     left_hand_slot = w_slots;
-                    load_left_weapon_damage_collider();
                 }
                 else if (w_slots.is_right_hand_slot)
                 {
                     right_hand_slot = w_slots;
-                    load_right_weapon_damage_collider();
                 }
             }
         }
@@ -36,7 +34,7 @@ namespace sg
             if (is_left)
             {
                 left_hand_slot.load_weapon_model(w_item);
-                load_left_weapon_damage_collider();
+                //load_left_weapon_damage_collider();
             }
             else
             {
