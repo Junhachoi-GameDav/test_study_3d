@@ -23,7 +23,7 @@ namespace sg
 
         private void Awake()
         {
-            cam_handler = camera_handler.cam_singleton;
+            cam_handler = FindObjectOfType<camera_handler>();
         }
         void Start()
         {
