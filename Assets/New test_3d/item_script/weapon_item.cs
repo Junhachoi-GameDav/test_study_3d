@@ -10,6 +10,10 @@ namespace sg
     {
         public GameObject model_prefab;
         public bool is_unarmed;
+
+        [Header("one handed attack animations")]
+        public string o_h_light_atk_1;
+        public string o_h_heavy_atk_1;
     }
 }
 

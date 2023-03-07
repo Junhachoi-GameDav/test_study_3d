@@ -58,7 +58,8 @@ namespace sg
            
             input_h.roll_flag = false;
             input_h.sprint_flag = false;
-            is_sprinting = input_h.b_input;
+            input_h.r_b_input = false;
+            input_h.r_t_input = false;
 
             if (is_in_air)
             {

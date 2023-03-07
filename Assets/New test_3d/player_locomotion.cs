@@ -34,6 +34,8 @@ namespace sg
         [SerializeField]
         float movement_speed = 5f;
         [SerializeField]
+        float walk_speed = 2f;
+        [SerializeField]
         float sprint_speed = 7f;
         [SerializeField]
         float rotation_speed = 10f;
@@ -103,7 +105,7 @@ namespace sg
 
             float speed = movement_speed;
             
-            if (input_h.sprint_flag)
+            if (input_h.sprint_flag && input_h.move_amount >0.5)
             {
                 speed = sprint_speed;
                 player_mng.is_sprinting = true;
@@ -111,7 +113,16 @@ namespace sg
             }
             else
             {
-                move_dir *= speed;
+                if (input_h.move_amount < 0.5)
+                {
+                    move_dir *= walk_speed;
+                    player_mng.is_sprinting = false;
+                }
+                else
+                {
+                    move_dir *= speed;
+                    player_mng.is_sprinting = false;
+                }
             }
 
             Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
@@ -195,7 +206,7 @@ namespace sg
                     }
                     else
                     {
-                        animater_h.player_target_animation("Blend Tree", false);
+                        animater_h.player_target_animation("empty", false);
                         in_air_timer = 0;
                     }
                     player_mng.is_in_air = false;

@@ -13,6 +13,8 @@ namespace sg
         public float mouse_y;
 
         public bool b_input;
+        public bool r_b_input;
+        public bool r_t_input;
 
         public bool roll_flag;
         public bool sprint_flag;
@@ -20,11 +22,17 @@ namespace sg
 
 
         Player_controller inputActions;
+        player_attack player_atk;
+        player_inventory player_inve;
 
         Vector2 movement_input;
         Vector2 camera_input;
 
-       
+        private void Awake()
+        {
+            player_atk = GetComponent<player_attack>();
+            player_inve = GetComponent<player_inventory>();
+        }
         public void OnEnable()
         {
             if(inputActions == null)
@@ -43,6 +51,7 @@ namespace sg
         {
             move_input(delta);
             handle_rolling_input(delta);
+            handle_attack_input(delta);
         }
         private void move_input(float delta)
         {
@@ -74,6 +83,22 @@ namespace sg
                 }
 
                 roll_input_timer = 0;
+            }
+        }
+
+        private void handle_attack_input(float delta)
+        {
+            inputActions.playeractions.RB.performed += i => r_b_input = true;
+            inputActions.playeractions.RT.performed += i => r_t_input = true;
+
+            if (r_b_input)
+            {
+                player_atk.handle_light_atk(player_inve.right_weapon);
+            }
+
+            if (r_t_input)
+            {
+                player_atk.handle_heavy_atk(player_inve.right_weapon);
             }
         }
     }
