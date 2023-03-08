@@ -30,7 +30,7 @@ namespace sg
 
         private void OnTriggerEnter(Collider collision)
         {
-            if(collision.tag == "Player")
+            if(collision.CompareTag("Player"))
             {
                 player_stats p_stats = collision.GetComponent<player_stats>();
 
@@ -40,7 +40,7 @@ namespace sg
                 }
             }
 
-            if(collision.tag == "Enemy")
+            if(collision.CompareTag("Enemy"))
             {
                 enemy_stats en_stats = collision.GetComponent<enemy_stats>();
 

@@ -10,7 +10,7 @@ namespace sg
         public int max_health;
         public int cur_health;
 
-
+        public health_bar h_bar;
         Animator anime;
 
         private void Awake()
@@ -21,6 +21,7 @@ namespace sg
         {
             max_health = set_max_health_from_health_level();
             cur_health = max_health;
+            h_bar.set_max_health(max_health);
         }
 
         private int set_max_health_from_health_level()
@@ -32,15 +33,12 @@ namespace sg
         public void take_damage(int damage)
         {
             cur_health = cur_health - damage;
-            Debug.Log("hit");
-
-            //anime.Play("damage_1");
-
+            anime.Play("damage_01");
+            h_bar.set_cur_health(cur_health);
             if (cur_health <= 0)
             {
                 cur_health = 0;
-                //anime.Play("damage_1");
-                Debug.Log("dead");
+                anime.Play("dead_01");
             }
         }
     }
