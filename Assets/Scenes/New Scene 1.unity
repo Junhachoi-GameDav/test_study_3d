@@ -1443,6 +1443,7 @@ MonoBehaviour:
   b_input: 0
   r_b_input: 0
   r_t_input: 0
+  combo_flag: 0
   roll_flag: 0
   sprint_flag: 0
   roll_input_timer: 0
@@ -1462,6 +1463,7 @@ MonoBehaviour:
   is_sprinting: 0
   is_in_air: 0
   is_ground: 0
+  can_combo: 0
 --- !u!114 &983616553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,6 +1490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e6206c509e6d245860c00d6da6e7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  last_atk: 
+  last_atk2: 
 --- !u!114 &983616555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2066,8 +2070,9 @@ GameObject:
   - component: {fileID: 1391097595}
   - component: {fileID: 1391097594}
   - component: {fileID: 1391097593}
+  - component: {fileID: 1391097596}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: enemy_health_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2156,6 +2161,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1391097596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391097591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60327b434e7c294fa066dbaee311a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_cam: {fileID: 1480222919}
 --- !u!1 &1395506597
 GameObject:
   m_ObjectHideFlags: 0

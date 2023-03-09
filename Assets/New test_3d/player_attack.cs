@@ -33,6 +33,7 @@ namespace sg
 
                 if(last_atk == weapon.o_h_light_atk_2)
                 {
+                    //¥Ÿ¿Ω∞≈
                     anime_h.anime.SetBool("can_combo", false);
                     anime_h.player_target_animation(weapon.o_h_light_atk_3, true);
 

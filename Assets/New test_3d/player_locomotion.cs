@@ -42,7 +42,6 @@ namespace sg
         [SerializeField]
         float falling_speed = 45;
 
-
         void Start()
         {
             player_mng = GetComponent<player_manager>();

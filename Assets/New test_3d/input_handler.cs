@@ -104,6 +104,11 @@ namespace sg
                 }
                 else
                 {
+                    if (player_m.is_interacting || player_m.can_combo)
+                    {
+                        return;
+                    }
+
                     player_atk.handle_light_atk(player_inve.right_weapon);
                 }
             }
