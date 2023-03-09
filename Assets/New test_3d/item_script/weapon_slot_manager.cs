@@ -12,8 +12,12 @@ namespace sg
         damage_collider left_h_dmg_collider;
         damage_collider right_h_dmg_collider;
 
+        Animator anime;
+
         private void Awake()
         {
+            anime = GetComponent<Animator>();
+
             weapon_holder_slot[] w_holder_slots = GetComponentsInChildren<weapon_holder_slot>();
 
             foreach (weapon_holder_slot w_slots in w_holder_slots)
@@ -35,11 +39,35 @@ namespace sg
             {
                 left_hand_slot.load_weapon_model(w_item);
                 //load_left_weapon_damage_collider();
+
+                #region handle weapon idle anime _left
+                /*
+                if (w_item != null)
+                {
+                    anime.CrossFade(w_item.left_arm_idle, 0.2f);
+                }
+                else
+                {
+                    anime.CrossFade("left_arm_empty", 0.2f);
+                }
+                */
+                #endregion
             }
             else
             {
                 right_hand_slot.load_weapon_model(w_item);
                 load_right_weapon_damage_collider();
+
+                #region handle weapon idle anime _right
+                if (w_item != null)
+                {
+                    anime.CrossFade(w_item.right_hand_idle, 0.2f);
+                }
+                else
+                {
+                    anime.CrossFade("right_arm_empty", 0.2f);
+                }
+                #endregion
             }
         }
 

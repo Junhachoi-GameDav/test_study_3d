@@ -16,6 +16,7 @@ MonoBehaviour:
   item_name: sword
   model_prefab: {fileID: 7527670950628548901, guid: 1a53dbfa2dc834c43ba8b106cf964115, type: 3}
   is_unarmed: 0
+  right_hand_idle: right_arm_idle
   o_h_light_atk_1: attack_light_01
   o_h_light_atk_2: attack_light_02
   o_h_light_atk_3: attack_light_03

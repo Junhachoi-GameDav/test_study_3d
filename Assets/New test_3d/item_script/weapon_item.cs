@@ -11,6 +11,10 @@ namespace sg
         public GameObject model_prefab;
         public bool is_unarmed;
 
+        [Header("idle_animations")]
+        public string right_hand_idle;
+        //public string left_hand_idle;
+
         [Header("one handed attack animations")]
         public string o_h_light_atk_1;
         public string o_h_light_atk_2;
