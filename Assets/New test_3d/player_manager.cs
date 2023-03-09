@@ -18,6 +18,7 @@ namespace sg
         public bool is_sprinting;
         public bool is_in_air;
         public bool is_ground;
+        public bool can_combo;
 
         float delta;
 
@@ -37,6 +38,8 @@ namespace sg
             delta = Time.deltaTime;
             
             is_interacting = anime.GetBool("is_interacting");
+            can_combo = anime.GetBool("can_combo");
+
 
             input_h.tick_input(delta);
             player_lo.handle_movement(delta);

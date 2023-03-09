@@ -101,6 +101,15 @@ namespace sg
             can_rotate = false;
         }
 
+        public void enable_combo()
+        {
+            anime.SetBool("can_combo", true);
+        }
+        public void disable_combo()
+        {
+            anime.SetBool("can_combo", false);
+        }
+
         private void OnAnimatorMove() //애니메이션이랑 같이 움직임
         {
             if(player_mng.is_interacting == false)

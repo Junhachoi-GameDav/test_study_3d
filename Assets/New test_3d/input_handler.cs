@@ -16,6 +16,7 @@ namespace sg
         public bool r_b_input;
         public bool r_t_input;
 
+        public bool combo_flag;
         public bool roll_flag;
         public bool sprint_flag;
         public float roll_input_timer;
@@ -24,6 +25,7 @@ namespace sg
         Player_controller inputActions;
         player_attack player_atk;
         player_inventory player_inve;
+        player_manager player_m;
 
         Vector2 movement_input;
         Vector2 camera_input;
@@ -32,6 +34,7 @@ namespace sg
         {
             player_atk = GetComponent<player_attack>();
             player_inve = GetComponent<player_inventory>();
+            player_m = GetComponent<player_manager>();
         }
         public void OnEnable()
         {
@@ -93,7 +96,16 @@ namespace sg
 
             if (r_b_input)
             {
-                player_atk.handle_light_atk(player_inve.right_weapon);
+                if (player_m.can_combo)
+                {
+                    combo_flag = true;
+                    player_atk.handle_weapon_combo(player_inve.right_weapon);
+                    combo_flag = false;
+                }
+                else
+                {
+                    player_atk.handle_light_atk(player_inve.right_weapon);
+                }
             }
 
             if (r_t_input)

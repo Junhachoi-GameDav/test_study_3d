@@ -13,6 +13,8 @@ namespace sg
 
         [Header("one handed attack animations")]
         public string o_h_light_atk_1;
+        public string o_h_light_atk_2;
+        public string o_h_light_atk_3;
         public string o_h_heavy_atk_1;
     }
 }
