@@ -20,4 +20,4 @@ MonoBehaviour:
   o_h_light_atk_1: attack_light_01
   o_h_light_atk_2: attack_light_02
   o_h_light_atk_3: attack_light_03
-  o_h_heavy_atk_1: Attack_heavy_01
+  o_h_heavy_atk_1: attack_heavy_01
