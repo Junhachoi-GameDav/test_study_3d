@@ -38,19 +38,19 @@ namespace sg
             if (is_left)
             {
                 left_hand_slot.load_weapon_model(w_item);
-                //load_left_weapon_damage_collider();
+                load_left_weapon_damage_collider();
 
                 #region handle weapon idle anime _left
-                /*
+                
                 if (w_item != null)
                 {
-                    anime.CrossFade(w_item.left_arm_idle, 0.2f);
+                    anime.CrossFade(w_item.left_hand_idle, 0.2f);
                 }
                 else
                 {
                     anime.CrossFade("left_arm_empty", 0.2f);
                 }
-                */
+                
                 #endregion
             }
             else

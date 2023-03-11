@@ -1443,6 +1443,10 @@ MonoBehaviour:
   b_input: 0
   r_b_input: 0
   r_t_input: 0
+  d_pad_up: 0
+  d_pad_down: 0
+  d_pad_right: 0
+  d_pad_left: 0
   combo_flag: 0
   roll_flag: 0
   sprint_flag: 0
@@ -1477,7 +1481,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   right_weapon: {fileID: 11400000, guid: 441e786f5b360fe49b6b2f87d0d95ed3, type: 2}
-  left_weapon: {fileID: 0}
+  left_weapon: {fileID: 11400000, guid: 441e786f5b360fe49b6b2f87d0d95ed3, type: 2}
+  heavy_weapon_weapon: {fileID: 11400000, guid: ed49cdd12d97bc942b18f8fc18a0661e, type: 2}
+  unarmed_weapon: {fileID: 11400000, guid: a56f6b3759283fa498a70a2eda6432f5, type: 2}
+  weapons_in_right_hand_slots:
+  - {fileID: 11400000, guid: 441e786f5b360fe49b6b2f87d0d95ed3, type: 2}
+  weapons_in_left_hand_slots:
+  - {fileID: 11400000, guid: 441e786f5b360fe49b6b2f87d0d95ed3, type: 2}
+  sword: {fileID: 1584523802}
+  cur_right_weapon_index: 0
+  cur_left_weapon_index: -1
 --- !u!114 &983616554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,6 +2452,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &1584523802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8125755928295525761, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
+  m_PrefabInstance: {fileID: 2075137978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668171048
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,31 +3229,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16
+      value: -0.137
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.158
+      value: 0.249
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.159
+      value: -0.138
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.042631283
+      value: -0.33328712
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.109355584
+      value: 0.16478555
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.6642831
+      value: 0.4938405
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.73820865
+      value: -0.78605795
       objectReference: {fileID: 0}
     - target: {fileID: 6286529434149748070, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3255,7 +3273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8125755928295525761, guid: 0e0b303e8de20a3489ae15223cb65ef0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

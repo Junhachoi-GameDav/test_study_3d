@@ -13,7 +13,7 @@ namespace sg
 
         [Header("idle_animations")]
         public string right_hand_idle;
-        //public string left_hand_idle;
+        public string left_hand_idle;
 
         [Header("one handed attack animations")]
         public string o_h_light_atk_1;

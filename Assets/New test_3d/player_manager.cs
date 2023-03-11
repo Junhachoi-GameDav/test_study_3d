@@ -63,6 +63,10 @@ namespace sg
             input_h.sprint_flag = false;
             input_h.r_b_input = false;
             input_h.r_t_input = false;
+            input_h.d_pad_up = false;
+            input_h.d_pad_down = false;
+            input_h.d_pad_right = false;
+            input_h.d_pad_left = false;
 
             if (is_in_air)
             {

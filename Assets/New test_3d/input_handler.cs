@@ -15,6 +15,11 @@ namespace sg
         public bool b_input;
         public bool r_b_input;
         public bool r_t_input;
+        public bool d_pad_up;
+        public bool d_pad_down;
+        public bool d_pad_right;
+        public bool d_pad_left;
+        
 
         public bool combo_flag;
         public bool roll_flag;
@@ -55,6 +60,7 @@ namespace sg
             move_input(delta);
             handle_rolling_input(delta);
             handle_attack_input(delta);
+            handle_quick_slots_input();
         }
         private void move_input(float delta)
         {
@@ -117,6 +123,22 @@ namespace sg
             {
                 player_atk.handle_heavy_atk(player_inve.right_weapon);
             }
+        }
+
+        private void handle_quick_slots_input()
+        {
+            inputActions.playerquickslots.DPadRight.performed += i => d_pad_right = true;
+            inputActions.playerquickslots.DPadLeft.performed += i => d_pad_left = true;
+            if (d_pad_right)
+            {
+                player_inve.change_right_weapon();
+            }
+            else if (d_pad_left)
+            {
+                player_inve.change_left_weapon();
+
+            }
+
         }
     }
 
