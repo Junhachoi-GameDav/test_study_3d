@@ -14,9 +14,12 @@ namespace sg
 
         Animator anime;
 
+        quick_slot_ui quick_Slot_Ui;
+
         private void Awake()
         {
             anime = GetComponent<Animator>();
+            quick_Slot_Ui = FindObjectOfType<quick_slot_ui>();
 
             weapon_holder_slot[] w_holder_slots = GetComponentsInChildren<weapon_holder_slot>();
 
@@ -39,7 +42,7 @@ namespace sg
             {
                 left_hand_slot.load_weapon_model(w_item);
                 load_left_weapon_damage_collider();
-
+                quick_Slot_Ui.update_weapon_quick_slots_ui(true, w_item);
                 #region handle weapon idle anime _left
                 
                 if (w_item != null)
@@ -57,7 +60,7 @@ namespace sg
             {
                 right_hand_slot.load_weapon_model(w_item);
                 load_right_weapon_damage_collider();
-
+                quick_Slot_Ui.update_weapon_quick_slots_ui(false, w_item);
                 #region handle weapon idle anime _right
                 if (w_item != null)
                 {

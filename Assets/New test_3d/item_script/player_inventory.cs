@@ -22,9 +22,11 @@ namespace sg
         public int cur_right_weapon_index = -1;
         public int cur_left_weapon_index = -1;
 
+        
         private void Awake()
         {
             w_slot_mng = GetComponentInChildren<weapon_slot_manager>();
+            
         }
 
         private void Start()
@@ -33,10 +35,10 @@ namespace sg
             right_weapon = weapons_in_right_hand_slots[cur_right_weapon_index];
             //left_weapon = weapons_in_left_hand_slots[cur_left_weapon_index];
             w_slot_mng.load_weapon_on_slot(right_weapon, false);
-            //w_slot_mng.load_weapon_on_slot(left_weapon, true);
+            w_slot_mng.load_weapon_on_slot(left_weapon, false);
             
             //right_weapon = unarmed_weapon;
-            left_weapon = unarmed_weapon;
+            //left_weapon = unarmed_weapon;
             sword.SetActive(false);
         }
 
@@ -63,7 +65,14 @@ namespace sg
                 cur_right_weapon_index = cur_right_weapon_index + 1;
             }
         }
-
+        public void pick_down_weapon()
+        {
+            sword.SetActive(true);
+        }
+        public void pick_up_weapon()
+        {
+            sword.SetActive(false);
+        }
         public void change_left_weapon()
         {
             cur_left_weapon_index = cur_left_weapon_index + 1;

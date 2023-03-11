@@ -19,7 +19,8 @@ namespace sg
         public bool d_pad_down;
         public bool d_pad_right;
         public bool d_pad_left;
-        
+
+        public bool q_input;
 
         public bool combo_flag;
         public bool roll_flag;
@@ -128,7 +129,7 @@ namespace sg
         private void handle_quick_slots_input()
         {
             inputActions.playerquickslots.DPadRight.performed += i => d_pad_right = true;
-            inputActions.playerquickslots.DPadLeft.performed += i => d_pad_left = true;
+            inputActions.playerquickslots.DPadLeft.performed += j => d_pad_left = true;
             if (d_pad_right)
             {
                 player_inve.change_right_weapon();
@@ -136,7 +137,6 @@ namespace sg
             else if (d_pad_left)
             {
                 player_inve.change_left_weapon();
-
             }
 
         }
