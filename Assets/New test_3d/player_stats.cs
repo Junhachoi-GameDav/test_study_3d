@@ -16,13 +16,12 @@ namespace sg
         public int cur_stamina;
 
         public health_bar h_bar;
-        stamina_bar stamina_Bar;
+        public stamina_bar stamina_Bar;
         animater_handler animater_h;
 
         private void Awake()
         {
             animater_h = GetComponentInChildren<animater_handler>();
-            stamina_Bar = FindObjectOfType<stamina_bar>();
         }
         private void Start()
         {
@@ -30,6 +29,8 @@ namespace sg
             max_health = set_max_health_from_health_level();
             cur_health = max_health;
             h_bar.set_max_health(max_health);
+            h_bar.set_cur_health(cur_health);
+
 
             max_stamina = set_max_stamina_from_stamina_level();
             cur_stamina = max_stamina;

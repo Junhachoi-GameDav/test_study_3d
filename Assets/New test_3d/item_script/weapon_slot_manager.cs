@@ -115,7 +115,7 @@ namespace sg
         }
         public void drain_stamina_heavy_attack()
         {
-            player_Stats.take_stamina_damage(Mathf.RoundToInt(attacking_weapon.base_stamina * attacking_weapon.light_attack_multiplier));
+            player_Stats.take_stamina_damage(Mathf.RoundToInt(attacking_weapon.base_stamina * attacking_weapon.heavy_attack_multiplier));
         }
         #endregion
     }

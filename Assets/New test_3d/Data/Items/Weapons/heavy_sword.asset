@@ -22,3 +22,6 @@ MonoBehaviour:
   o_h_light_atk_2: 
   o_h_light_atk_3: 
   o_h_heavy_atk_1: 
+  base_stamina: 20
+  light_attack_multiplier: 1
+  heavy_attack_multiplier: 2
