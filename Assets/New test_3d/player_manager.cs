@@ -45,6 +45,8 @@ namespace sg
             player_lo.handle_movement(delta);
             player_lo.handle_rolling_sprinting(delta);
             player_lo.handle_falling(delta, player_lo.move_dir);
+
+            check_for_interactable_object();
         }
         private void FixedUpdate()
         {
@@ -67,10 +69,34 @@ namespace sg
             input_h.d_pad_down = false;
             input_h.d_pad_right = false;
             input_h.d_pad_left = false;
+            input_h.a_input = false;
 
             if (is_in_air)
             {
                 player_lo.in_air_timer = player_lo.in_air_timer + Time.deltaTime;
+            }
+        }
+
+        public void check_for_interactable_object()
+        {
+            RaycastHit hit;
+
+            if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cam_handler.ignore_layers))
+            {
+                if (hit.collider.CompareTag("interactable"))
+                {
+                    interactable interactable_obj = hit.collider.GetComponent<interactable>();
+
+                    if(interactable_obj != null)
+                    {
+                        string interactable_text = interactable_obj.interactable_text;
+
+                        if (input_h.a_input)
+                        {
+                            hit.collider.GetComponent<interactable>().interact(this);
+                        }
+                    }
+                }
             }
         }
     }

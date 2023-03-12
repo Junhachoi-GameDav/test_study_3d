@@ -12,7 +12,7 @@ namespace sg
 
         private Transform my_transform;
         private Vector3 camera_transform_pos;
-        private LayerMask ignore_layers;
+        public LayerMask ignore_layers;
         private Vector3 camera_follow_velocity = Vector3.zero;
 
 

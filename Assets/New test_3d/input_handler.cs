@@ -12,6 +12,7 @@ namespace sg
         public float mouse_x;
         public float mouse_y;
 
+        public bool a_input;
         public bool b_input;
         public bool r_b_input;
         public bool r_t_input;
@@ -62,6 +63,7 @@ namespace sg
             handle_rolling_input(delta);
             handle_attack_input(delta);
             handle_quick_slots_input();
+            handle_interacting_button_input();
         }
         private void move_input(float delta)
         {
@@ -139,6 +141,11 @@ namespace sg
                 player_inve.change_left_weapon();
             }
 
+        }
+
+        private void handle_interacting_button_input()
+        {
+            inputActions.playeractions.A.performed += i => a_input = true;
         }
     }
 

@@ -22,6 +22,7 @@ namespace sg
         public int cur_right_weapon_index = -1;
         public int cur_left_weapon_index = -1;
 
+        public List<weapon_item> weapon_inventory;
         
         private void Awake()
         {
