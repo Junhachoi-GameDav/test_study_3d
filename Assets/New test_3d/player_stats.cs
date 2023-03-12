@@ -15,12 +15,14 @@ namespace sg
         public int max_stamina;
         public int cur_stamina;
 
-        public health_bar h_bar;
-        public stamina_bar stamina_Bar;
+        health_bar h_bar;
+        stamina_bar stamina_Bar;
         animater_handler animater_h;
 
         private void Awake()
         {
+            h_bar = FindObjectOfType<health_bar>();
+            stamina_Bar = FindObjectOfType<stamina_bar>();
             animater_h = GetComponentInChildren<animater_handler>();
         }
         private void Start()

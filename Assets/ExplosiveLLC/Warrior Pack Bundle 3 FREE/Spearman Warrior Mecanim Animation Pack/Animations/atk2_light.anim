@@ -36511,7 +36511,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.46666667
-    functionName: drain_stamina_heavy_attack
+    functionName: drain_stamina_light_attack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
