@@ -12,15 +12,19 @@ namespace sg
         damage_collider left_h_dmg_collider;
         damage_collider right_h_dmg_collider;
 
+        public weapon_item attacking_weapon;
+
         Animator anime;
 
         quick_slot_ui quick_Slot_Ui;
+
+        player_stats player_Stats;
 
         private void Awake()
         {
             anime = GetComponent<Animator>();
             quick_Slot_Ui = FindObjectOfType<quick_slot_ui>();
-
+            player_Stats = GetComponentInParent<player_stats>();
             weapon_holder_slot[] w_holder_slots = GetComponentsInChildren<weapon_holder_slot>();
 
             foreach (weapon_holder_slot w_slots in w_holder_slots)
@@ -101,6 +105,17 @@ namespace sg
         public void close_left_damage_collider()
         {
             left_h_dmg_collider.disable_damage_collider();
+        }
+        #endregion
+
+        #region handle weapon's stamina drainage
+        public void drain_stamina_light_attack()
+        {
+            player_Stats.take_stamina_damage(Mathf.RoundToInt(attacking_weapon.base_stamina * attacking_weapon.light_attack_multiplier));
+        }
+        public void drain_stamina_heavy_attack()
+        {
+            player_Stats.take_stamina_damage(Mathf.RoundToInt(attacking_weapon.base_stamina * attacking_weapon.light_attack_multiplier));
         }
         #endregion
     }

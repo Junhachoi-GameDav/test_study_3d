@@ -11,13 +11,18 @@ namespace sg
         public int max_health;
         public int cur_health;
 
-        public health_bar h_bar;
+        public int stamina_level = 10;
+        public int max_stamina;
+        public int cur_stamina;
 
+        public health_bar h_bar;
+        stamina_bar stamina_Bar;
         animater_handler animater_h;
 
         private void Awake()
         {
             animater_h = GetComponentInChildren<animater_handler>();
+            stamina_Bar = FindObjectOfType<stamina_bar>();
         }
         private void Start()
         {
@@ -25,12 +30,20 @@ namespace sg
             max_health = set_max_health_from_health_level();
             cur_health = max_health;
             h_bar.set_max_health(max_health);
+
+            max_stamina = set_max_stamina_from_stamina_level();
+            cur_stamina = max_stamina;
         }
 
         private int set_max_health_from_health_level()
         {
             max_health = health_level * 10;
             return max_health;
+        }
+        private int set_max_stamina_from_stamina_level()
+        {
+            max_stamina = stamina_level * 10;
+            return max_stamina;
         }
 
         public void take_damage(int damage)
@@ -46,6 +59,13 @@ namespace sg
                 cur_health = 0;
                 animater_h.player_target_animation("dying", true);
             }
+        }
+
+        public void take_stamina_damage(int damage)
+        {
+            cur_stamina = cur_stamina - damage;
+            //set bar
+            stamina_Bar.set_cur_stamina(cur_stamina);
         }
     }
 }

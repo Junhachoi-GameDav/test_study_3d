@@ -20,6 +20,11 @@ namespace sg
         public string o_h_light_atk_2;
         public string o_h_light_atk_3;
         public string o_h_heavy_atk_1;
+
+        [Header("stamina costs")]
+        public int base_stamina;
+        public float light_attack_multiplier;
+        public float heavy_attack_multiplier;
     }
 }
 

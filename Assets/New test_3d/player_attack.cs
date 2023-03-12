@@ -8,13 +8,17 @@ namespace sg
     {
         animater_handler anime_h;
         input_handler input_h;
+        weapon_slot_manager weapon_s_m;
+
         public string last_atk;
         public string last_atk2;
 
         private void Awake()
         {
             anime_h = GetComponentInChildren<animater_handler>();
+            weapon_s_m = GetComponentInChildren<weapon_slot_manager>();
             input_h = GetComponent<input_handler>();
+            
         }
 
         public void handle_weapon_combo(weapon_item weapon)
@@ -47,11 +51,13 @@ namespace sg
         }
         public void handle_light_atk(weapon_item weapon)
         {
+            weapon_s_m.attacking_weapon = weapon;
             anime_h.player_target_animation(weapon.o_h_light_atk_1, true);
             last_atk = weapon.o_h_light_atk_1;
         }
         public void handle_heavy_atk(weapon_item weapon)
         {
+            weapon_s_m.attacking_weapon = weapon;
             anime_h.player_target_animation(weapon.o_h_heavy_atk_1, true);
             last_atk = weapon.o_h_heavy_atk_1;
         }
