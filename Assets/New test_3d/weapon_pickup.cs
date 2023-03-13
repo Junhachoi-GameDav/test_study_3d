@@ -27,7 +27,7 @@ namespace sg
             anime_h = player_m.GetComponentInChildren<animater_handler>();
 
             player_Locomotion.rigid.velocity = Vector3.zero; // ∏ÿ√„ æ∆¿Ã≈€ ¡÷øÔ∂ß
-            anime_h.player_target_animation("pickup_item", true);
+            anime_h.player_target_animation("pick_up_item", true);
             player_Inventory.weapon_inventory.Add(weapon);
 
             Destroy(gameObject);

@@ -83,7 +83,7 @@ namespace sg
 
             if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cam_handler.ignore_layers))
             {
-                if (hit.collider.CompareTag("interactable"))
+                if (hit.collider.tag == "interactable")
                 {
                     interactable interactable_obj = hit.collider.GetComponent<interactable>();
 
