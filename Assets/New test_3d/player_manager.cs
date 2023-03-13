@@ -11,6 +11,7 @@ namespace sg
         Animator anime;
         camera_handler cam_handler;
         player_locomotion player_lo;
+        interactable_ui interactable_Ui;
 
         public bool is_interacting;
 
@@ -31,6 +32,7 @@ namespace sg
             input_h = GetComponent<input_handler>();
             anime = GetComponentInChildren<Animator>();
             player_lo = GetComponent<player_locomotion>();
+            interactable_Ui = FindObjectOfType<interactable_ui>();
         }
 
         void Update()
