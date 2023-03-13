@@ -85,7 +85,7 @@ namespace sg
         public void check_for_interactable_object()
         {
             RaycastHit hit;
-
+            
             if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cam_handler.ignore_layers))
             {
                 if (hit.collider.tag == "interactable")

@@ -11,6 +11,7 @@ namespace sg
         public Text item_text;
 
         public RawImage item_image;
+        public Image item_bg;
     }
 }
 

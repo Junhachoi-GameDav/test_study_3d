@@ -88,6 +88,7 @@ namespace sg
             else if (weapons_in_left_hand_slots[cur_left_weapon_index] != null)
             {
                 left_weapon = weapons_in_left_hand_slots[cur_left_weapon_index];
+                //w_slot_mng.load_weapon_on_slot(left_weapon, true);
                 w_slot_mng.load_weapon_on_slot(weapons_in_left_hand_slots[cur_left_weapon_index], false);
                 //sword.SetActive(false);
             }
