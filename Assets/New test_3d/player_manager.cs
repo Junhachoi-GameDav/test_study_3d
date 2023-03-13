@@ -13,6 +13,8 @@ namespace sg
         player_locomotion player_lo;
         interactable_ui interactable_Ui;
 
+        public GameObject interactable_Ui_obj;
+
         public bool is_interacting;
 
         [Header("Player Flags")]
@@ -92,12 +94,20 @@ namespace sg
                     if(interactable_obj != null)
                     {
                         string interactable_text = interactable_obj.interactable_text;
-
+                        interactable_Ui.interactable_text.text = interactable_text;
+                        interactable_Ui_obj.SetActive(true);
                         if (input_h.a_input)
                         {
                             hit.collider.GetComponent<interactable>().interact(this);
                         }
                     }
+                }
+            }
+            else
+            {
+                if(interactable_Ui_obj != null)
+                {
+                    interactable_Ui_obj.SetActive(false);
                 }
             }
         }
