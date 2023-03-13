@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace sg
 {
@@ -29,6 +30,9 @@ namespace sg
             player_Locomotion.rigid.velocity = Vector3.zero; // ∏ÿ√„ æ∆¿Ã≈€ ¡÷øÔ∂ß
             anime_h.player_target_animation("pick_up_item", true);
             player_Inventory.weapon_inventory.Add(weapon);
+            player_m.item_Ui_obj.GetComponentInChildren<Text>().text = weapon.item_name;
+            player_m.item_Ui_obj.GetComponentInChildren<RawImage>().texture = weapon.item_icon.texture;
+            player_m.item_Ui_obj.SetActive(true);
 
             Destroy(gameObject);
         }

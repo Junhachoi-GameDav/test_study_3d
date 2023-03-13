@@ -14,6 +14,7 @@ namespace sg
         interactable_ui interactable_Ui;
 
         public GameObject interactable_Ui_obj;
+        public GameObject item_Ui_obj;
 
         public bool is_interacting;
 
@@ -108,6 +109,11 @@ namespace sg
                 if(interactable_Ui_obj != null)
                 {
                     interactable_Ui_obj.SetActive(false);
+                }
+
+                if(item_Ui_obj != null && input_h.a_input)
+                {
+                    item_Ui_obj.SetActive(false);
                 }
             }
         }
