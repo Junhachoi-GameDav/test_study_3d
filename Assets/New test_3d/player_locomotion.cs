@@ -241,6 +241,26 @@ namespace sg
                 my_transform.position = target_position;
             }
         }
+
+        public void handle_jumping()
+        {
+            if (player_mng.is_interacting)
+            {
+                return;
+            }
+            if (input_h.jump_input)
+            {
+                if(input_h.move_amount > 0)
+                {
+                    move_dir = camera_obj.forward * input_h.vertical;
+                    move_dir += camera_obj.right * input_h.horizontal;
+                    animater_h.player_target_animation("jump", true);
+                    move_dir.y = 0;
+                    Quaternion jump_rotation = Quaternion.LookRotation(move_dir);
+                    my_transform.rotation = jump_rotation;
+                }
+            }
+        }
         #endregion
     }
 }

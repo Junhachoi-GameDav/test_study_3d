@@ -16,6 +16,8 @@ namespace sg
         public bool b_input;
         public bool r_b_input;
         public bool r_t_input;
+        public bool jump_input;
+
         public bool d_pad_up;
         public bool d_pad_down;
         public bool d_pad_right;
@@ -64,6 +66,7 @@ namespace sg
             handle_attack_input(delta);
             handle_quick_slots_input();
             handle_interacting_button_input();
+            handle_jump_input();
         }
         private void move_input(float delta)
         {
@@ -146,6 +149,11 @@ namespace sg
         private void handle_interacting_button_input()
         {
             inputActions.playeractions.A.performed += i => a_input = true;
+        }
+
+        private void handle_jump_input()
+        {
+            inputActions.playeractions.JUMP.performed += i => jump_input = true;
         }
     }
 

@@ -44,12 +44,13 @@ namespace sg
             
             is_interacting = anime.GetBool("is_interacting");
             can_combo = anime.GetBool("can_combo");
-
+            anime.SetBool("is_in_air", is_in_air);
 
             input_h.tick_input(delta);
             player_lo.handle_movement(delta);
             player_lo.handle_rolling_sprinting(delta);
             player_lo.handle_falling(delta, player_lo.move_dir);
+            player_lo.handle_jumping();
 
             check_for_interactable_object();
         }
@@ -75,6 +76,7 @@ namespace sg
             input_h.d_pad_right = false;
             input_h.d_pad_left = false;
             input_h.a_input = false;
+            input_h.jump_input = false;
 
             if (is_in_air)
             {
