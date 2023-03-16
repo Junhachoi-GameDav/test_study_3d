@@ -77,6 +77,7 @@ namespace sg
             input_h.d_pad_left = false;
             input_h.a_input = false;
             input_h.jump_input = false;
+            input_h.inventory_input = false;
 
             if (is_in_air)
             {

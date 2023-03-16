@@ -17,6 +17,7 @@ namespace sg
         public bool r_b_input;
         public bool r_t_input;
         public bool jump_input;
+        public bool inventory_input;
 
         public bool d_pad_up;
         public bool d_pad_down;
@@ -28,6 +29,7 @@ namespace sg
         public bool combo_flag;
         public bool roll_flag;
         public bool sprint_flag;
+        public bool inventory_flag;
         public float roll_input_timer;
 
 
@@ -35,6 +37,7 @@ namespace sg
         player_attack player_atk;
         player_inventory player_inve;
         player_manager player_m;
+        ui_manager ui_mng;
 
         Vector2 movement_input;
         Vector2 camera_input;
@@ -44,6 +47,7 @@ namespace sg
             player_atk = GetComponent<player_attack>();
             player_inve = GetComponent<player_inventory>();
             player_m = GetComponent<player_manager>();
+            ui_mng = FindObjectOfType<ui_manager>();
         }
         public void OnEnable()
         {
@@ -67,6 +71,7 @@ namespace sg
             handle_quick_slots_input();
             handle_interacting_button_input();
             handle_jump_input();
+            handle_inventory_input();
         }
         private void move_input(float delta)
         {
@@ -154,6 +159,25 @@ namespace sg
         private void handle_jump_input()
         {
             inputActions.playeractions.JUMP.performed += i => jump_input = true;
+        }
+
+        private void handle_inventory_input()
+        {
+            inputActions.playeractions.inventory.performed += i => inventory_input = true;
+
+            if (inventory_input)
+            {
+                inventory_flag = !inventory_flag;
+
+                if (inventory_flag)
+                {
+                    ui_mng.open_select_window();
+                }
+                else
+                {
+                    ui_mng.close_select_window();
+                }
+            }
         }
     }
 

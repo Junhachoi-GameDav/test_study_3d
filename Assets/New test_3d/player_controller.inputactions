@@ -109,6 +109,15 @@
             "id": "1eda179f-dd1d-41e6-b839-04512ee028a8",
             "actions": [
                 {
+                    "name": "inventory",
+                    "type": "Button",
+                    "id": "56c249fc-022e-463b-8a29-7dfb256a99dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "roll",
                     "type": "Button",
                     "id": "0c44deb2-353c-4b16-8105-0b25681eda0e",
@@ -240,6 +249,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "JUMP",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b89e9c90-0987-4696-b735-e346a1c864a3",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d24b001-48e2-4507-8655-a2cef3af2260",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
