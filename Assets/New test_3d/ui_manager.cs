@@ -8,6 +8,16 @@ namespace sg
     {
         public GameObject select_window;
 
+        public GameObject weapon_inve_slot_prefab;
+        public Transform weapon_inve_slot_parent;
+        weapon_inventory_slot[] weapon_Inve_slots;
+
+        public void update_ui()
+        {
+            #region weapon inventory slots
+
+            #endregion
+        }
         public void open_select_window()
         {
             select_window.SetActive(true);
