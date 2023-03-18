@@ -19,8 +19,8 @@ namespace sg
         public static camera_handler cam_singleton;
 
         public float look_speed = 0.1f;
-        public float follow_speed = 0.1f;
         public float pivot_speed = 0.03f;
+        public float follow_speed = 0.1f;
 
         private float target_position;
         private float default_position;
