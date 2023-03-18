@@ -7,15 +7,15 @@ namespace sg
 {
     public class weapon_inventory_slot : MonoBehaviour
     {
-        Image icon;
+        public Image icon;
         weapon_item w_item;
 
         public void add_item(weapon_item new_item)
         {
             w_item = new_item;
             icon.sprite = w_item.item_icon;
-            icon.enabled = true;
             gameObject.SetActive(true);
+            icon.enabled = true;
         }
 
         public void clear_inventory_slot()

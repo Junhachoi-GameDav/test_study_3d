@@ -172,10 +172,15 @@ namespace sg
                 if (inventory_flag)
                 {
                     ui_mng.open_select_window();
+                    ui_mng.update_ui();
+                    ui_mng.hud_window.SetActive(false);
                 }
                 else
                 {
                     ui_mng.close_select_window();
+                    ui_mng.close_all_inventory_windows();
+                    ui_mng.hud_window.SetActive(true);
+
                 }
             }
         }
