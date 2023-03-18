@@ -7,6 +7,7 @@ namespace sg
     public class ui_manager : MonoBehaviour
     {
         public player_inventory p_inventory;
+        ui_equipment equipment_window;
 
         [Header("ui windows")]
         public GameObject hud_window;
@@ -18,9 +19,14 @@ namespace sg
         public Transform weapon_inve_slot_parent;
         weapon_inventory_slot[] weapon_Inve_slots;
 
+        private void Awake()
+        {
+            equipment_window = FindObjectOfType<ui_equipment>();
+        }
         private void Start()
         {
             weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>();
+            equipment_window.load_weapons_on_equipment_screen(p_inventory);
         }
         public void update_ui()
         {

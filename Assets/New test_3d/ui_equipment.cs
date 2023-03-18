@@ -11,6 +11,24 @@ namespace sg
         public bool left_hand_slot_1_selected;
         public bool left_hand_slot_2_selected;
 
+        ui_handle_equitment_slot[] ui_handle_e_slot;
+
+        private void Awake()
+        {
+            ui_handle_e_slot = GetComponentsInChildren<ui_handle_equitment_slot>();
+        }
+        
+        public void load_weapons_on_equipment_screen(player_inventory player_Inve)
+        {
+            
+            for (int i = 0; i < ui_handle_e_slot.Length; i++)
+            {
+                if (ui_handle_e_slot[i].right_hand_slot_1)
+                {
+                    ui_handle_e_slot[i].add_itme(player_Inve.weapons_in_right_hand_slots[0]);
+                }
+            }
+        }
         public void select_right_hand_slot_1()
         {
             right_hand_slot_1_selected = true;
