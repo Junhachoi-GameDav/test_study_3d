@@ -20,7 +20,7 @@ namespace sg
 
         private void Start()
         {
-            weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>();
+            weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>(true);
         }
         public void update_ui()
         {
@@ -32,7 +32,7 @@ namespace sg
                     if(weapon_Inve_slots.Length < p_inventory.weapon_inventory.Count)
                     {
                         Instantiate(weapon_inve_slot_prefab, weapon_inve_slot_parent);
-                        weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>();
+                        weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>(true);
 
                     }
                     weapon_Inve_slots[i].add_item(p_inventory.weapon_inventory[i]);
