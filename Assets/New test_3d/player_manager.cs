@@ -47,28 +47,24 @@ namespace sg
             anime.SetBool("is_in_air", is_in_air);
 
             input_h.tick_input(delta);
-            player_lo.handle_movement(delta);
             player_lo.handle_rolling_sprinting(delta);
-            player_lo.handle_falling(delta, player_lo.move_dir);
             player_lo.handle_jumping();
 
+            
+            
             check_for_interactable_object();
         }
         private void FixedUpdate()
         {
-            float delta = Time.deltaTime;
-
-            if (cam_handler != null)
-            {
-                cam_handler.follow_target(delta);
-                cam_handler.handle_camera_rotation(delta, input_h.mouse_x, input_h.mouse_y);
-            }
+            float delta = Time.fixedDeltaTime;
+            player_lo.handle_movement(delta);
+            player_lo.handle_falling(delta, player_lo.move_dir);
         }
         private void LateUpdate()
         {
            
             input_h.roll_flag = false;
-            input_h.sprint_flag = false;
+            
             input_h.r_b_input = false;
             input_h.r_t_input = false;
             input_h.d_pad_up = false;
@@ -78,6 +74,14 @@ namespace sg
             input_h.a_input = false;
             input_h.jump_input = false;
             input_h.inventory_input = false;
+
+            float delta = Time.deltaTime;
+
+            if (cam_handler != null)
+            {
+                cam_handler.follow_target(delta);
+                cam_handler.handle_camera_rotation(delta, input_h.mouse_x, input_h.mouse_y);
+            }
 
             if (is_in_air)
             {

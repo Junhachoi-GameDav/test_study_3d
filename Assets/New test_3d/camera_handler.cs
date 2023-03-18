@@ -53,8 +53,8 @@ namespace sg
 
         public void handle_camera_rotation(float delta, float mouse_x_input, float mouse_y_input)
         {
-            look_angle += (mouse_x_input * look_speed) / delta;
-            pivot_angle -= (mouse_y_input * pivot_speed) / delta;
+            look_angle += mouse_x_input * look_speed * delta;
+            pivot_angle -= mouse_y_input * pivot_speed * delta;
             pivot_angle = Mathf.Clamp(pivot_angle, min_pivot, max_pivot);
 
             Vector3 rotation = Vector3.zero;

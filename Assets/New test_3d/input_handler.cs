@@ -56,6 +56,15 @@ namespace sg
                 inputActions = new Player_controller();
                 inputActions.playermovement.movement.performed += inputActions => movement_input = inputActions.ReadValue<Vector2>();
                 inputActions.playermovement.camera.performed += i => camera_input = i.ReadValue<Vector2>();
+                //
+                //b_input = inputActions.playeractions.roll.IsPressed();
+                inputActions.playeractions.RB.performed += i => r_b_input = true;
+                inputActions.playeractions.RT.performed += i => r_t_input = true;
+                inputActions.playerquickslots.DPadRight.performed += i => d_pad_right = true;
+                inputActions.playerquickslots.DPadLeft.performed += i => d_pad_left = true;
+                inputActions.playeractions.A.performed += i => a_input = true;
+                inputActions.playeractions.JUMP.performed += i => jump_input = true;
+                inputActions.playeractions.inventory.performed += i => inventory_input = true;
             }
             inputActions.Enable();
         }
@@ -69,8 +78,6 @@ namespace sg
             handle_rolling_input(delta);
             handle_attack_input(delta);
             handle_quick_slots_input();
-            handle_interacting_button_input();
-            handle_jump_input();
             handle_inventory_input();
         }
         private void move_input(float delta)
@@ -89,10 +96,13 @@ namespace sg
             //b_input = inputActions.playeractions.roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
             //b_input = inputActions.playeractions.roll.triggered; //최신버전은 이것으로 해야함___ 이건 트리거라서 한번만 된다.
             b_input = inputActions.playeractions.roll.IsPressed(); //또는 이것
+
+            sprint_flag = b_input;
+
+
             if (b_input)
             {
                 roll_input_timer += delta;
-                sprint_flag = true;
             }
             else
             {
@@ -108,8 +118,8 @@ namespace sg
 
         private void handle_attack_input(float delta)
         {
-            inputActions.playeractions.RB.performed += i => r_b_input = true;
-            inputActions.playeractions.RT.performed += i => r_t_input = true;
+            //inputActions.playeractions.RB.performed += i => r_b_input = true;
+            //inputActions.playeractions.RT.performed += i => r_t_input = true;
 
             if (r_b_input)
             {
@@ -138,8 +148,8 @@ namespace sg
 
         private void handle_quick_slots_input()
         {
-            inputActions.playerquickslots.DPadRight.performed += i => d_pad_right = true;
-            inputActions.playerquickslots.DPadLeft.performed += i => d_pad_left = true;
+            //inputActions.playerquickslots.DPadRight.performed += i => d_pad_right = true;
+            //inputActions.playerquickslots.DPadLeft.performed += i => d_pad_left = true;
             if (d_pad_right)
             {
                 player_inve.change_right_weapon();
@@ -151,20 +161,8 @@ namespace sg
 
         }
 
-        private void handle_interacting_button_input()
-        {
-            inputActions.playeractions.A.performed += i => a_input = true;
-        }
-
-        private void handle_jump_input()
-        {
-            inputActions.playeractions.JUMP.performed += i => jump_input = true;
-        }
-
         private void handle_inventory_input()
         {
-            inputActions.playeractions.inventory.performed += i => inventory_input = true;
-
             if (inventory_input)
             {
                 inventory_flag = !inventory_flag;
