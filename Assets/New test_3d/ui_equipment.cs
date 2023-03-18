@@ -27,6 +27,20 @@ namespace sg
                 {
                     ui_handle_e_slot[i].add_itme(player_Inve.weapons_in_right_hand_slots[0]);
                 }
+                /*
+                else if(ui_handle_e_slot[i].right_hand_slot_2)
+                {
+                    ui_handle_e_slot[i].add_itme(player_Inve.weapons_in_right_hand_slots[1]);
+                }
+                else if (ui_handle_e_slot[i].left_hand_slot_1)
+                {
+                    ui_handle_e_slot[i].add_itme(player_Inve.weapons_in_left_hand_slots[0]);
+                }
+                else
+                {
+                    ui_handle_e_slot[i].add_itme(player_Inve.weapons_in_left_hand_slots[1]);
+                }
+                */            
             }
         }
         public void select_right_hand_slot_1()
