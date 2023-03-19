@@ -33,6 +33,11 @@ namespace sg
         public float camera_collision_offset = 0.2f;
         public float min_collision_offset = 0.2f;
 
+
+        List<character_manager> available_targets = new List<character_manager>();
+        public Transform nearest_lock_on_target;
+        public float max_lock_on_distance = 30;
+
         private void Awake()
         {
             cam_singleton = this;
@@ -89,6 +94,45 @@ namespace sg
 
             camera_transform_pos.z = Mathf.Lerp(camera_transform.localPosition.z, target_position, delta / 0.2f);
             camera_transform.localPosition = camera_transform_pos;
+        }
+
+        public void handle_lock_on()
+        {
+            float shortest_distance = Mathf.Infinity; //z축 방향으로 무한하게
+
+            // 주변에 있는 모든 콜라이더(적)을 추출 (target_transform.position에서 부터 26 길이 만큼)
+            Collider[] colliders = Physics.OverlapSphere(target_transform.position, 26);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                character_manager character = colliders[i].GetComponent<character_manager>();
+
+                if(character != null)
+                {
+                    Vector3 lock_target_dir = character.transform.position - target_transform.position;
+                    float distance_form_target = Vector3.Distance(target_transform.position, character.transform.position);
+                    float viewable_angle = Vector3.Angle(lock_target_dir, camera_transform.forward);
+                    
+                    //root는 계층구조를 의미한다. 자식으로 있거나 부모로 있는것을 비교
+                    if(character.transform.root != target_transform.transform.root 
+                        && viewable_angle > -50 && viewable_angle < 50
+                        && distance_form_target <= max_lock_on_distance)
+                    {
+                        available_targets.Add(character);
+                    }
+                }
+            }
+
+            for (int k = 0; k < available_targets.Count; k++)
+            {
+                float distance_form_target = Vector3.Distance(target_transform.position, available_targets[k].transform.position);
+
+                if(distance_form_target < shortest_distance)
+                {
+                    shortest_distance = distance_form_target;
+                    nearest_lock_on_target = available_targets[k].lock_on_tranform;
+                }
+            }
         }
     }
 }

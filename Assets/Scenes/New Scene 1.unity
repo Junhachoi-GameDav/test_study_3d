@@ -1315,6 +1315,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3161517028788475051}
+  - {fileID: 1319509896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1389,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feba2a198959e14580ea9f30c8c2884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lock_on_tranform: {fileID: 1319509896}
   interactable_Ui_obj: {fileID: 2097744692}
   item_Ui_obj: {fileID: 4675212952130090087}
   is_interacting: 0
@@ -1820,6 +1822,37 @@ MonoBehaviour:
   right_hand_slot_2: 0
   left_hand_slot_1: 0
   left_hand_slot_2: 1
+--- !u!1 &1319509895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319509896}
+  m_Layer: 10
+  m_Name: look_on_pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1319509896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319509895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.209, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 983616549}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1326160250 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1326160250, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
@@ -2386,6 +2419,37 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1514059554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514059555}
+  m_Layer: 10
+  m_Name: look_on_pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514059555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514059554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3009728151110219893}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1549367617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7157,9 +7221,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3009728151110219893}
   - component: {fileID: 9161622476534784527}
-  - component: {fileID: 9161622476534784530}
   - component: {fileID: 9161622476534784529}
   - component: {fileID: 9161622476534784528}
+  - component: {fileID: 9161622476534784530}
+  - component: {fileID: 9161622476534784531}
   m_Layer: 0
   m_Name: SkeletonWarriorUnity
   m_TagString: Enemy
@@ -7769,6 +7834,7 @@ Transform:
   - {fileID: 1431222799688037345}
   - {fileID: 5994298093198392754}
   - {fileID: 1391097592}
+  - {fileID: 1514059555}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18332,7 +18398,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &9161622476534784529
 CapsuleCollider:
@@ -18347,7 +18413,7 @@ CapsuleCollider:
   m_Radius: 0.26
   m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.96, z: 0}
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!114 &9161622476534784530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18364,6 +18430,19 @@ MonoBehaviour:
   max_health: 100
   cur_health: 50
   h_bar: {fileID: 1717674948}
+--- !u!114 &9161622476534784531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2490318392588411599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a324f3b1d0ad7114fbf626aea628d87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lock_on_tranform: {fileID: 1514059555}
 --- !u!4 &9164979115434515130
 Transform:
   m_ObjectHideFlags: 0

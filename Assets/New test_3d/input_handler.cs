@@ -18,6 +18,7 @@ namespace sg
         public bool r_t_input;
         public bool jump_input;
         public bool inventory_input;
+        public bool lock_on_input;
 
         public bool d_pad_up;
         public bool d_pad_down;
@@ -29,6 +30,7 @@ namespace sg
         public bool combo_flag;
         public bool roll_flag;
         public bool sprint_flag;
+        public bool lock_on_flag;
         public bool inventory_flag;
         public float roll_input_timer;
 
@@ -38,6 +40,7 @@ namespace sg
         player_inventory player_inve;
         player_manager player_m;
         ui_manager ui_mng;
+        camera_handler cam_handler;
 
         Vector2 movement_input;
         Vector2 camera_input;
@@ -48,6 +51,7 @@ namespace sg
             player_inve = GetComponent<player_inventory>();
             player_m = GetComponent<player_manager>();
             ui_mng = FindObjectOfType<ui_manager>();
+            cam_handler = FindObjectOfType<camera_handler>();
         }
         public void OnEnable()
         {
@@ -65,6 +69,7 @@ namespace sg
                 inputActions.playeractions.A.performed += i => a_input = true;
                 inputActions.playeractions.JUMP.performed += i => jump_input = true;
                 inputActions.playeractions.inventory.performed += i => inventory_input = true;
+                inputActions.playeractions.LOCKON.performed += i => lock_on_input = true;
             }
             inputActions.Enable();
         }
@@ -180,6 +185,16 @@ namespace sg
                     ui_mng.hud_window.SetActive(true);
 
                 }
+            }
+        }
+
+        private void handle_lock_on_input()
+        {
+            if(lock_on_input && lock_on_flag==false)
+            {
+                lock_on_input = false;
+                lock_on_flag = true;
+                cam_handler.handle_lock_on();
             }
         }
     }

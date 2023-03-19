@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace sg
 {
-    public class player_manager : MonoBehaviour
+    public class player_manager : character_manager
     {
         input_handler input_h;
         Animator anime;
