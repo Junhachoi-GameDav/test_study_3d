@@ -144,8 +144,8 @@ public partial class @Player_controller : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""984b9709-40c7-4b05-b191-222ecd163a40"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""id"": ""af2556ce-0d0e-44c0-b9f5-34ac4d41d388"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -155,8 +155,8 @@ public partial class @Player_controller : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""89e8e594-4f4b-42e0-8389-1cf238077223"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""id"": ""239dcbb5-7274-4516-9ba9-203499c01062"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
