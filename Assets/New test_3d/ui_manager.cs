@@ -13,6 +13,8 @@ namespace sg
         public GameObject hud_window;
         public GameObject select_window;
         public GameObject weapon_inve_window;
+        public GameObject equipment_inve_window;
+
 
         [Header("weapon inventory")]
         public GameObject weapon_inve_slot_prefab;
@@ -27,6 +29,7 @@ namespace sg
         {
             weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>();
             equipment_window.load_weapons_on_equipment_screen(p_inventory);
+            equipment_inve_window.SetActive(false);
         }
         public void update_ui()
         {
@@ -63,6 +66,7 @@ namespace sg
         public void close_all_inventory_windows()
         {
             weapon_inve_window.SetActive(false);
+            equipment_inve_window.SetActive(false);
         }
     }
 }
