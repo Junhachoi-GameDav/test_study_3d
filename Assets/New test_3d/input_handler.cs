@@ -19,6 +19,8 @@ namespace sg
         public bool jump_input;
         public bool inventory_input;
         public bool lock_on_input;
+        public bool forward_mouse_to_left;
+        public bool back_mouse_to_right;
 
         public bool d_pad_up;
         public bool d_pad_down;
@@ -70,6 +72,8 @@ namespace sg
                 inputActions.playeractions.JUMP.performed += i => jump_input = true;
                 inputActions.playeractions.inventory.performed += i => inventory_input = true;
                 inputActions.playeractions.LOCKON.performed += i => lock_on_input = true;
+                inputActions.playermovement.lockontargetleft.performed += i => forward_mouse_to_left = true;
+                inputActions.playermovement.lockontargetright.performed += i => back_mouse_to_right = true;
             }
             inputActions.Enable();
         }
@@ -193,7 +197,7 @@ namespace sg
         {
             if(lock_on_input && lock_on_flag==false)
             {
-                cam_handler.clear_lock_on_target();
+                
                 lock_on_input = false;
                 
                 cam_handler.handle_lock_on();
@@ -209,6 +213,26 @@ namespace sg
                 lock_on_input = false;
                 lock_on_flag = false;
                 cam_handler.clear_lock_on_target();
+            }
+
+            if(lock_on_flag && forward_mouse_to_left)
+            {
+                forward_mouse_to_left = false;
+                cam_handler.handle_lock_on();
+                if(cam_handler.left_lock_target != null)
+                {
+                    cam_handler.cur_lock_on_target = cam_handler.left_lock_target;
+                }
+            }
+
+            if(lock_on_flag && back_mouse_to_right)
+            {
+                back_mouse_to_right = false;
+                cam_handler.handle_lock_on();
+                if(cam_handler.right_lock_target != null)
+                {
+                    cam_handler.cur_lock_on_target = cam_handler.right_lock_target;
+                }
             }
         }
     }

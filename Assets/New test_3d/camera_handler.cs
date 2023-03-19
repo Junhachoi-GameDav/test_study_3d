@@ -40,6 +40,8 @@ namespace sg
 
         List<character_manager> available_targets = new List<character_manager>();
         public Transform nearest_lock_on_target;
+        public Transform left_lock_target;
+        public Transform right_lock_target;
         public float max_lock_on_distance = 30;
 
         private void Awake()
@@ -126,6 +128,8 @@ namespace sg
         public void handle_lock_on()
         {
             float shortest_distance = Mathf.Infinity; //z축 방향으로 무한하게
+            float shortest_distance_of_left_target = Mathf.Infinity;
+            float shortest_distance_of_right_target = Mathf.Infinity;
 
             // 주변에 있는 모든 콜라이더(적)을 추출 (target_transform.position에서 부터 26 길이 만큼)
             Collider[] colliders = Physics.OverlapSphere(target_transform.position, 26);
@@ -158,6 +162,30 @@ namespace sg
                 {
                     shortest_distance = distance_form_target;
                     nearest_lock_on_target = available_targets[k].lock_on_tranform;
+                }
+
+                if (input_h.lock_on_flag)
+                {
+                    //InverseTransformPoint 는 스타크래프트와 같은 RTS 에서 장르에서 어떤 객체에게 이동 명령을 내릴 경우
+                    //클릭한 이동지점으로 이동하는 동시에 바라보는 방향 또한 이동 지점쪽으로 바꾸는데
+                    //이런 경우를 처리할시 유용
+                    //월드 공간 기준 targetPos 을 로컬 공간(플레이어의) 기준의 위치로 바꾼후
+                    //z축(플레이어의 앞 방향)
+                    Vector3 relative_enemy_position = cur_lock_on_target.InverseTransformPoint(available_targets[k].transform.position);
+                    var distance_from_left_target = cur_lock_on_target.transform.position.x + available_targets[k].transform.position.x;
+                    var distance_from_right_target = cur_lock_on_target.transform.position.x - available_targets[k].transform.position.x;
+
+                    if(relative_enemy_position.x > 0.00 && distance_from_left_target < shortest_distance_of_left_target)
+                    {
+                        shortest_distance_of_left_target = distance_from_left_target;
+                        left_lock_target = available_targets[k].lock_on_tranform;
+                    }
+
+                    if(relative_enemy_position.x < 0.00 && distance_from_right_target < shortest_distance_of_right_target)
+                    {
+                        shortest_distance_of_right_target = distance_from_right_target;
+                        right_lock_target = available_targets[k].lock_on_tranform;
+                    }
                 }
             }
         }
