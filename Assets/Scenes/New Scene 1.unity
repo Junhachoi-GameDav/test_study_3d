@@ -827,6 +827,9 @@ MonoBehaviour:
   camera_sphere_radius: 0.2
   camera_collision_offset: 0.2
   min_collision_offset: 0.2
+  cur_lock_on_target: {fileID: 0}
+  nearest_lock_on_target: {fileID: 0}
+  max_lock_on_distance: 30
 --- !u!1818360609 &538489648
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -1368,6 +1371,7 @@ MonoBehaviour:
   r_t_input: 0
   jump_input: 0
   inventory_input: 0
+  lock_on_input: 0
   d_pad_up: 0
   d_pad_down: 0
   d_pad_right: 0
@@ -1376,6 +1380,7 @@ MonoBehaviour:
   combo_flag: 0
   roll_flag: 0
   sprint_flag: 0
+  lock_on_flag: 0
   inventory_flag: 0
   roll_input_timer: 0
 --- !u!114 &983616552
@@ -2443,7 +2448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514059554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.39, z: 0}
+  m_LocalPosition: {x: 0, y: 1.233, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

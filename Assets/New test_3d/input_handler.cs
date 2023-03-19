@@ -84,6 +84,7 @@ namespace sg
             handle_attack_input(delta);
             handle_quick_slots_input();
             handle_inventory_input();
+            handle_lock_on_input();
         }
         private void move_input(float delta)
         {
@@ -192,9 +193,22 @@ namespace sg
         {
             if(lock_on_input && lock_on_flag==false)
             {
+                cam_handler.clear_lock_on_target();
                 lock_on_input = false;
-                lock_on_flag = true;
+                
                 cam_handler.handle_lock_on();
+                if (cam_handler.nearest_lock_on_target != null)
+                {
+                    cam_handler.cur_lock_on_target = cam_handler.nearest_lock_on_target;
+                    lock_on_flag = true;
+                }
+                
+            }
+            else if(lock_on_input && lock_on_flag)
+            {
+                lock_on_input = false;
+                lock_on_flag = false;
+                cam_handler.clear_lock_on_target();
             }
         }
     }

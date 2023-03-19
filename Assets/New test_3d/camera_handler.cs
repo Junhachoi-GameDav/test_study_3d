@@ -6,6 +6,8 @@ namespace sg
 {
     public class camera_handler : MonoBehaviour
     {
+        input_handler input_h;
+
         public Transform target_transform;
         public Transform camera_transform;
         public Transform camera_pivot_transform;
@@ -33,6 +35,8 @@ namespace sg
         public float camera_collision_offset = 0.2f;
         public float min_collision_offset = 0.2f;
 
+        public Transform cur_lock_on_target;
+
 
         List<character_manager> available_targets = new List<character_manager>();
         public Transform nearest_lock_on_target;
@@ -45,6 +49,7 @@ namespace sg
             default_position = camera_transform.localPosition.z;
             ignore_layers = ~(1 << 8 | 1 << 9 | 1 << 10);
             target_transform = FindObjectOfType<player_manager>().transform;
+            input_h = FindObjectOfType<input_handler>();
         }
 
         public void follow_target(float delta)
@@ -58,20 +63,42 @@ namespace sg
 
         public void handle_camera_rotation(float delta, float mouse_x_input, float mouse_y_input)
         {
-            look_angle += mouse_x_input * look_speed * delta;
-            pivot_angle -= mouse_y_input * pivot_speed * delta;
-            pivot_angle = Mathf.Clamp(pivot_angle, min_pivot, max_pivot);
+            if(input_h.lock_on_flag == false && cur_lock_on_target == null)
+            {
+                look_angle += mouse_x_input * look_speed * delta;
+                pivot_angle -= mouse_y_input * pivot_speed * delta;
+                pivot_angle = Mathf.Clamp(pivot_angle, min_pivot, max_pivot);
 
-            Vector3 rotation = Vector3.zero;
-            rotation.y = look_angle;
-            Quaternion target_rotation = Quaternion.Euler(rotation);
-            my_transform.rotation = target_rotation;
+                Vector3 rotation = Vector3.zero;
+                rotation.y = look_angle;
+                Quaternion target_rotation = Quaternion.Euler(rotation);
+                my_transform.rotation = target_rotation;
 
-            rotation = Vector3.zero;
-            rotation.x = pivot_angle;
+                rotation = Vector3.zero;
+                rotation.x = pivot_angle;
 
-            target_rotation = Quaternion.Euler(rotation);
-            camera_pivot_transform.localRotation = target_rotation;
+                target_rotation = Quaternion.Euler(rotation);
+                camera_pivot_transform.localRotation = target_rotation;
+            }
+            else
+            {
+                float velocity = 0;
+
+                Vector3 dir = cur_lock_on_target.position - transform.position;
+                dir.Normalize();
+                dir.y = 0;
+
+                Quaternion target_rotation = Quaternion.LookRotation(dir);
+                transform.rotation = target_rotation;
+
+                dir = cur_lock_on_target.position - camera_pivot_transform.position;
+                dir.Normalize();
+
+                target_rotation = Quaternion.LookRotation(dir);
+                Vector3 euler_angle = target_rotation.eulerAngles;
+                euler_angle.y = 0;
+                camera_pivot_transform.localEulerAngles = euler_angle;
+            }
         }
 
         private void handle_camera_collisions(float delta)
@@ -133,6 +160,14 @@ namespace sg
                     nearest_lock_on_target = available_targets[k].lock_on_tranform;
                 }
             }
+        }
+
+        public void clear_lock_on_target()
+        {
+            //add로 넣어준것을 clear로 없애기
+            available_targets.Clear();
+            nearest_lock_on_target = null;
+            cur_lock_on_target = null;
         }
     }
 }
