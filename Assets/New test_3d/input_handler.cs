@@ -83,14 +83,14 @@ namespace sg
         }
         public void tick_input(float delta)
         {
-            move_input(delta);
+            handle_move_input(delta);
             handle_rolling_input(delta);
             handle_attack_input(delta);
             handle_quick_slots_input();
             handle_inventory_input();
             handle_lock_on_input();
         }
-        private void move_input(float delta)
+        private void handle_move_input(float delta)
         {
             horizontal = movement_input.x;
             vertical = movement_input.y;
@@ -234,6 +234,8 @@ namespace sg
                     cam_handler.cur_lock_on_target = cam_handler.right_lock_target;
                 }
             }
+
+            cam_handler.set_cam_height();
         }
     }
 

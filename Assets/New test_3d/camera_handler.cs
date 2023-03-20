@@ -7,6 +7,7 @@ namespace sg
     public class camera_handler : MonoBehaviour
     {
         input_handler input_h;
+        player_manager player_mng;
 
         public Transform target_transform;
         public Transform camera_transform;
@@ -15,6 +16,7 @@ namespace sg
         private Transform my_transform;
         private Vector3 camera_transform_pos;
         public LayerMask ignore_layers;
+        public LayerMask environment_layer;
         private Vector3 camera_follow_velocity = Vector3.zero;
 
 
@@ -34,14 +36,18 @@ namespace sg
         public float camera_sphere_radius = 0.2f;
         public float camera_collision_offset = 0.2f;
         public float min_collision_offset = 0.2f;
+        public float locked_pivot_pos = 2.25f;
+        public float unlocked_pivot_pos = 1.65f;
 
-        public Transform cur_lock_on_target;
+
+
+        public character_manager cur_lock_on_target;
 
 
         List<character_manager> available_targets = new List<character_manager>();
-        public Transform nearest_lock_on_target;
-        public Transform left_lock_target;
-        public Transform right_lock_target;
+        public character_manager nearest_lock_on_target;
+        public character_manager left_lock_target;
+        public character_manager right_lock_target;
         public float max_lock_on_distance = 30;
 
         private void Awake()
@@ -52,8 +58,12 @@ namespace sg
             ignore_layers = ~(1 << 8 | 1 << 9 | 1 << 10);
             target_transform = FindObjectOfType<player_manager>().transform;
             input_h = FindObjectOfType<input_handler>();
+            player_mng = FindObjectOfType<player_manager>();
         }
-
+        private void Start()
+        {
+            environment_layer = LayerMask.NameToLayer("environment");
+        }
         public void follow_target(float delta)
         {
             Vector3 target_position = Vector3.SmoothDamp(my_transform.position, target_transform.position, ref camera_follow_velocity, delta / follow_speed);
@@ -86,14 +96,14 @@ namespace sg
             {
                 float velocity = 0;
 
-                Vector3 dir = cur_lock_on_target.position - transform.position;
+                Vector3 dir = cur_lock_on_target.transform.position - transform.position;
                 dir.Normalize();
                 dir.y = 0;
 
                 Quaternion target_rotation = Quaternion.LookRotation(dir);
                 transform.rotation = target_rotation;
 
-                dir = cur_lock_on_target.position - camera_pivot_transform.position;
+                dir = cur_lock_on_target.transform.position - camera_pivot_transform.position;
                 dir.Normalize();
 
                 target_rotation = Quaternion.LookRotation(dir);
@@ -128,7 +138,7 @@ namespace sg
         public void handle_lock_on()
         {
             float shortest_distance = Mathf.Infinity; //z축 방향으로 무한하게
-            float shortest_distance_of_left_target = Mathf.Infinity;
+            float shortest_distance_of_left_target = -Mathf.Infinity;
             float shortest_distance_of_right_target = Mathf.Infinity;
 
             // 주변에 있는 모든 콜라이더(적)을 추출 (target_transform.position에서 부터 26 길이 만큼)
@@ -143,13 +153,26 @@ namespace sg
                     Vector3 lock_target_dir = character.transform.position - target_transform.position;
                     float distance_form_target = Vector3.Distance(target_transform.position, character.transform.position);
                     float viewable_angle = Vector3.Angle(lock_target_dir, camera_transform.forward);
-                    
+                    RaycastHit hit;
+
                     //root는 계층구조를 의미한다. 자식으로 있거나 부모로 있는것을 비교
                     if(character.transform.root != target_transform.transform.root 
                         && viewable_angle > -50 && viewable_angle < 50
                         && distance_form_target <= max_lock_on_distance)
                     {
-                        available_targets.Add(character);
+                        if (Physics.Linecast(player_mng.lock_on_tranform.position, character.lock_on_tranform.position, out hit))
+                        {
+                            Debug.DrawLine(player_mng.lock_on_tranform.position, character.lock_on_tranform.position);
+
+                            if(hit.transform.gameObject.layer == environment_layer)
+                            {
+                                //cannot lock on
+                            }
+                            else
+                            {
+                                available_targets.Add(character);
+                            }
+                        }
                     }
                 }
             }
@@ -161,7 +184,7 @@ namespace sg
                 if(distance_form_target < shortest_distance)
                 {
                     shortest_distance = distance_form_target;
-                    nearest_lock_on_target = available_targets[k].lock_on_tranform;
+                    nearest_lock_on_target = available_targets[k];
                 }
 
                 if (input_h.lock_on_flag)
@@ -171,20 +194,27 @@ namespace sg
                     //이런 경우를 처리할시 유용
                     //월드 공간 기준 targetPos 을 로컬 공간(플레이어의) 기준의 위치로 바꾼후
                     //z축(플레이어의 앞 방향)
-                    Vector3 relative_enemy_position = cur_lock_on_target.InverseTransformPoint(available_targets[k].transform.position);
-                    var distance_from_left_target = cur_lock_on_target.transform.position.x + available_targets[k].transform.position.x;
-                    var distance_from_right_target = cur_lock_on_target.transform.position.x - available_targets[k].transform.position.x;
 
-                    if(relative_enemy_position.x > 0.00 && distance_from_left_target < shortest_distance_of_left_target)
+                    //Vector3 relative_enemy_position = cur_lock_on_target.transform.InverseTransformPoint(available_targets[k].transform.position);
+                    //var distance_from_left_target = cur_lock_on_target.transform.position.x + available_targets[k].transform.position.x;
+                    //var distance_from_right_target = cur_lock_on_target.transform.position.x - available_targets[k].transform.position.x;
+
+                    Vector3 relative_enemy_position = input_h.transform.InverseTransformPoint(available_targets[k].transform.position);
+                    var distance_from_left_target = relative_enemy_position.x;
+                    var distance_from_right_target = relative_enemy_position.x;
+
+                    if (relative_enemy_position.x <= 0.00 && distance_from_left_target > shortest_distance_of_left_target 
+                        && available_targets[k] != cur_lock_on_target)
                     {
                         shortest_distance_of_left_target = distance_from_left_target;
-                        left_lock_target = available_targets[k].lock_on_tranform;
+                        left_lock_target = available_targets[k];
                     }
 
-                    if(relative_enemy_position.x < 0.00 && distance_from_right_target < shortest_distance_of_right_target)
+                    if(relative_enemy_position.x >= 0.00 && distance_from_right_target < shortest_distance_of_right_target
+                        && available_targets[k] != cur_lock_on_target)
                     {
                         shortest_distance_of_right_target = distance_from_right_target;
-                        right_lock_target = available_targets[k].lock_on_tranform;
+                        right_lock_target = available_targets[k];
                     }
                 }
             }
@@ -196,6 +226,26 @@ namespace sg
             available_targets.Clear();
             nearest_lock_on_target = null;
             cur_lock_on_target = null;
+        }
+
+        public void set_cam_height()
+        {
+            Vector3 velocity = Vector3.zero;
+            Vector3 new_locked_pos = new Vector3(0, locked_pivot_pos);
+            Vector3 new_unlocked_pos = new Vector3(0, unlocked_pivot_pos);
+
+            if(cur_lock_on_target != null)
+            {
+                camera_pivot_transform.transform.localPosition = 
+                    Vector3.SmoothDamp(
+                    camera_pivot_transform.transform.localPosition, new_locked_pos, ref velocity, Time.deltaTime);
+            }
+            else
+            {
+                camera_pivot_transform.transform.localPosition = 
+                    Vector3.SmoothDamp(
+                    camera_pivot_transform.transform.localPosition, new_unlocked_pos, ref velocity, Time.deltaTime);
+            }
         }
     }
 }

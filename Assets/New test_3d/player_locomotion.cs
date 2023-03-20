@@ -6,6 +6,7 @@ namespace sg
 {
     public class player_locomotion : MonoBehaviour
     {
+        camera_handler cam_handler;
         player_manager player_mng;
         Transform camera_obj;
         input_handler input_h;
@@ -42,6 +43,10 @@ namespace sg
         [SerializeField]
         float falling_speed = 45;
 
+        private void Awake()
+        {
+            cam_handler = FindObjectOfType<camera_handler>();
+        }
         void Start()
         {
             player_mng = GetComponent<player_manager>();
@@ -64,26 +69,63 @@ namespace sg
 
         private void handle_rotation(float delta)
         {
-            Vector3 target_dir = Vector3.zero;
-
-            float move_override = input_h.move_amount;
-
-            target_dir = camera_obj.forward * input_h.vertical;
-            target_dir += camera_obj.right * input_h.horizontal;
-
-            target_dir.Normalize();
-            target_dir.y = 0;
-
-            if(target_dir == Vector3.zero)
+            if (input_h.lock_on_flag)
             {
-                target_dir = my_transform.forward;
+                if(input_h.sprint_flag || input_h.roll_flag)
+                {
+                    Vector3 target_dir = Vector3.zero;
+                    target_dir = cam_handler.camera_transform.forward * input_h.vertical;
+                    target_dir += cam_handler.camera_transform.right * input_h.horizontal;
+                    target_dir.Normalize();
+                    target_dir.y = 0;
+
+                    if (target_dir == Vector3.zero)
+                    {
+                        target_dir = transform.forward;
+                    }
+
+                    Quaternion tr = Quaternion.LookRotation(target_dir);
+                    Quaternion target_rotation = Quaternion.Slerp(transform.rotation, tr, rotation_speed * Time.deltaTime);
+
+                    transform.rotation = target_rotation;
+                }
+                else
+                {
+                    Vector3 rotation_dir = move_dir;
+                    rotation_dir = cam_handler.cur_lock_on_target.transform.position - transform.position;
+                    rotation_dir.y = 0;
+                    rotation_dir.Normalize();
+
+                    Quaternion tr = Quaternion.LookRotation(rotation_dir);
+                    Quaternion target_rotation = Quaternion.Slerp(transform.rotation, tr, rotation_speed * Time.deltaTime);
+                    transform.rotation = target_rotation;
+                }
+                
             }
+            else
+            {
+                Vector3 target_dir = Vector3.zero;
 
-            float r_s = rotation_speed;
-            Quaternion t_r = Quaternion.LookRotation(target_dir);
-            Quaternion target_rotation = Quaternion.Slerp(my_transform.rotation, t_r, r_s * delta);
+                float move_override = input_h.move_amount;
 
-            my_transform.rotation = target_rotation;
+                target_dir = camera_obj.forward * input_h.vertical;
+                target_dir += camera_obj.right * input_h.horizontal;
+
+                target_dir.Normalize();
+                target_dir.y = 0;
+
+                if (target_dir == Vector3.zero)
+                {
+                    target_dir = my_transform.forward;
+                }
+
+                float r_s = rotation_speed;
+                Quaternion t_r = Quaternion.LookRotation(target_dir);
+                Quaternion target_rotation = Quaternion.Slerp(my_transform.rotation, t_r, r_s * delta);
+
+                my_transform.rotation = target_rotation;
+            }
+            
         }
 
         public void handle_movement(float delta)
@@ -127,8 +169,14 @@ namespace sg
             Vector3 projected_velocity = Vector3.ProjectOnPlane(move_dir, normal_vector);
             rigid.velocity = projected_velocity;
 
-
-            animater_h.updete_animation_value(input_h.move_amount, 0, player_mng.is_sprinting);
+            if (input_h.lock_on_flag && input_h.sprint_flag == false)
+            {
+                animater_h.updete_animation_value(input_h.vertical, input_h.horizontal, player_mng.is_sprinting);
+            }
+            else
+            {
+                animater_h.updete_animation_value(input_h.move_amount, 0, player_mng.is_sprinting);
+            }
 
 
             if (animater_h.can_rotate)
