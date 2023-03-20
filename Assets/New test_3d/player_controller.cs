@@ -145,7 +145,7 @@ public partial class @Player_controller : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""af2556ce-0d0e-44c0-b9f5-34ac4d41d388"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Mouse>/backButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -156,7 +156,7 @@ public partial class @Player_controller : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""239dcbb5-7274-4516-9ba9-203499c01062"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Mouse>/forwardButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
