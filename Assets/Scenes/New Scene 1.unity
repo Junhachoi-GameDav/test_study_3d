@@ -2080,7 +2080,7 @@ MonoBehaviour:
   camera_sphere_radius: 0.2
   camera_collision_offset: 0.2
   min_collision_offset: 0.2
-  locked_pivot_pos: 2
+  locked_pivot_pos: 1.6
   unlocked_pivot_pos: 1.65
   cur_lock_on_target: {fileID: 0}
   nearest_lock_on_target: {fileID: 0}
