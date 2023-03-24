@@ -13,10 +13,6 @@ namespace sg
 
         public ui_handle_equitment_slot[] ui_handle_e_slot;
 
-        private void Awake()
-        {
-            
-        }
         
         public void load_weapons_on_equipment_screen(player_inventory player_Inve)
         {

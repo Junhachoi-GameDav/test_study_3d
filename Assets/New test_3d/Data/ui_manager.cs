@@ -26,10 +26,7 @@ namespace sg
         public Transform weapon_inve_slot_parent;
         weapon_inventory_slot[] weapon_Inve_slots;
 
-        private void Awake()
-        {
-            
-        }
+       
         private void Start()
         {
             weapon_Inve_slots = weapon_inve_slot_parent.GetComponentsInChildren<weapon_inventory_slot>();
