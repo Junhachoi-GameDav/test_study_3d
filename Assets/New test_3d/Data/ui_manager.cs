@@ -15,6 +15,11 @@ namespace sg
         public GameObject weapon_inve_window;
         public GameObject equipment_inve_window;
 
+        [Header("Equipment window slot selected")]
+        public bool right_hand_slot_01_selected;
+        public bool right_hand_slot_02_selected;
+        public bool left_hand_slot_01_selected;
+        public bool left_hand_slot_02_selected;
 
         [Header("weapon inventory")]
         public GameObject weapon_inve_slot_prefab;
@@ -65,8 +70,17 @@ namespace sg
 
         public void close_all_inventory_windows()
         {
+            reset_all_selected_slots();
             weapon_inve_window.SetActive(false);
             equipment_inve_window.SetActive(false);
+        }
+
+        public void reset_all_selected_slots()
+        {
+            right_hand_slot_01_selected = false;
+            right_hand_slot_02_selected = false;
+            left_hand_slot_01_selected = false;
+            left_hand_slot_02_selected = false;
         }
     }
 }

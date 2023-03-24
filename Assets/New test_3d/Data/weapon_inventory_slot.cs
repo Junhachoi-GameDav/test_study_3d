@@ -10,6 +10,8 @@ namespace sg
         public Image icon;
         weapon_item w_item;
 
+  
+
         public void add_item(weapon_item new_item)
         {
             w_item = new_item;
@@ -25,7 +27,5 @@ namespace sg
             icon.enabled = false;
             gameObject.SetActive(false);
         }
-
-
     }
 }

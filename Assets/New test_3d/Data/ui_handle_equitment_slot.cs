@@ -10,10 +10,10 @@ namespace sg
         public Image icon;
         weapon_item weapon;
 
-        public bool right_hand_slot_1;
-        public bool right_hand_slot_2;
-        public bool left_hand_slot_1;
-        public bool left_hand_slot_2;
+        public bool right_hand_slot_01;
+        public bool right_hand_slot_02;
+        public bool left_hand_slot_01;
+        public bool left_hand_slot_02;
 
         public void add_itme(weapon_item new_weapon)
         {
@@ -29,6 +29,26 @@ namespace sg
             icon.sprite = null;
             icon.enabled = false;
             gameObject.SetActive(false);
+        }
+
+        public void select_this_slot()
+        {
+            if (right_hand_slot_01)
+            {
+
+            }
+            else if (right_hand_slot_01)
+            {
+
+            }
+            else if (left_hand_slot_01)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
