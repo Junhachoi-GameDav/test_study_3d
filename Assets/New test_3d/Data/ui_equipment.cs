@@ -23,10 +23,27 @@ namespace sg
 
             foreach (var item in ui_handle_e_slot)
             {
-                if (item.right_hand_slot_1)
+                if (item.right_hand_slot_01)
                 {
                     item.add_itme(player_Inve.weapons_in_right_hand_slots[0]);
                 }
+                else if (item.right_hand_slot_02)
+                {
+                    item.add_itme(player_Inve.weapons_in_right_hand_slots[1]);
+                }
+                else if (item.left_hand_slot_01)
+                {
+                    item.add_itme(player_Inve.weapons_in_left_hand_slots[0]);
+                }
+                else if (item.left_hand_slot_02)
+                {
+                    item.add_itme(player_Inve.weapons_in_left_hand_slots[1]);
+                }
+                else
+                {
+                    return;
+                }
+
                 /*
                     else if(ui_handle_e_slot[i].right_hand_slot_2)
                     {
