@@ -11151,12 +11151,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1190167548, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1190167549, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 1176
       objectReference: {fileID: 0}
+    - target: {fileID: 1190167550, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
+      propertyPath: ui_handle_e_slot.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190167550, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
+      propertyPath: ui_handle_e_slot.Array.data[0]
+      value: 
+      objectReference: {fileID: 1725538056}
     - target: {fileID: 1193833111, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11450,6 +11458,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 983616553}
     - target: {fileID: 95278441678561411, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
+      propertyPath: equipment_window
+      value: 
+      objectReference: {fileID: 95278440111306105}
+    - target: {fileID: 95278441678561411, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
       propertyPath: weapon_inve_window
       value: 
       objectReference: {fileID: 95278440111306104}
@@ -11532,6 +11544,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 95278440881418601, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
   m_PrefabInstance: {fileID: 95278440111306100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &95278440111306105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1190167550, guid: 3dfa6d8c35eb69b41a0ca7d2b5c7861d, type: 3}
+  m_PrefabInstance: {fileID: 95278440111306100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056430726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06fee7d56269af4381977183c651614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &103338553589596285
 GameObject:
   m_ObjectHideFlags: 0

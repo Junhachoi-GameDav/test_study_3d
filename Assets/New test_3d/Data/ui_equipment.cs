@@ -11,11 +11,11 @@ namespace sg
         public bool left_hand_slot_1_selected;
         public bool left_hand_slot_2_selected;
 
-        ui_handle_equitment_slot[] ui_handle_e_slot;
+        public ui_handle_equitment_slot[] ui_handle_e_slot;
 
         private void Awake()
         {
-            ui_handle_e_slot = GetComponentsInChildren<ui_handle_equitment_slot>();
+            
         }
         
         public void load_weapons_on_equipment_screen(player_inventory player_Inve)

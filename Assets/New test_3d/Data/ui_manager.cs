@@ -7,7 +7,7 @@ namespace sg
     public class ui_manager : MonoBehaviour
     {
         public player_inventory p_inventory;
-        ui_equipment equipment_window;
+        public ui_equipment equipment_window;
 
         [Header("ui windows")]
         public GameObject hud_window;
@@ -23,7 +23,7 @@ namespace sg
 
         private void Awake()
         {
-            equipment_window = FindObjectOfType<ui_equipment>();
+            
         }
         private void Start()
         {
