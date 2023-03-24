@@ -32,15 +32,15 @@ namespace sg
 
         private void Start()
         {
-            
-            right_weapon = weapons_in_right_hand_slots[cur_right_weapon_index];
-            left_weapon = weapons_in_left_hand_slots[cur_left_weapon_index];
+
+            right_weapon = unarmed_weapon;
+            //left_weapon = weapons_in_left_hand_slots[cur_left_weapon_index];
             w_slot_mng.load_weapon_on_slot(right_weapon, false);
-            w_slot_mng.load_weapon_on_slot(left_weapon, true);
+            //w_slot_mng.load_weapon_on_slot(left_weapon, true);
             
             //right_weapon = unarmed_weapon;
             //left_weapon = unarmed_weapon;
-            sword.SetActive(false);
+            sword.SetActive(true);
         }
 
         public void change_right_weapon()
