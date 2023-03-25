@@ -4,11 +4,9 @@ using UnityEngine;
 
 namespace sg
 {
-    public class enemy_stats : MonoBehaviour
+    public class enemy_stats : character_stats
     {
-        public int health_level = 10;
-        public int max_health;
-        public int cur_health;
+        
 
         public health_bar h_bar;
         Animator anime;

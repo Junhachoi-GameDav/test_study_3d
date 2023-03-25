@@ -5,16 +5,9 @@ using UnityEngine;
 
 namespace sg
 {
-    public class player_stats : MonoBehaviour
+    public class player_stats : character_stats
     {
-        public int health_level = 10;
-        public int max_health;
-        public int cur_health;
-
-        public int stamina_level = 10;
-        public int max_stamina;
-        public int cur_stamina;
-
+        
         health_bar h_bar;
         stamina_bar stamina_Bar;
         animater_handler animater_h;
