@@ -11,7 +11,7 @@ namespace sg
         private void Awake()
         {
             anime = GetComponent<Animator>();
-            en_loco_mng = GetComponent<enemy_locomotion_manager>();
+            en_loco_mng = GetComponentInParent<enemy_locomotion_manager>();
         }
 
         private void OnAnimatorMove()
