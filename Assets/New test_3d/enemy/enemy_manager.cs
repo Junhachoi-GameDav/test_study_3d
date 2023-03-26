@@ -7,7 +7,7 @@ namespace sg
     public class enemy_manager : character_manager
     {
         enemy_locomotion_manager enemy_Locomotion_mng;
-        bool is_preforming_action;
+        public bool is_preforming_action;
 
         [Header("A.I settings")]
         public float detection_radius =20;

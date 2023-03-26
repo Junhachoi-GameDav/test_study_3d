@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace sg
 {
-    public class animater_handler : MonoBehaviour
+    public class animater_handler : animator_manager
     {
         player_manager player_mng;
-        public Animator anime;
+
         input_handler input_h;
         player_locomotion player_lo;
         int vertical;
@@ -85,12 +85,6 @@ namespace sg
             anime.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
         }
 
-        public void player_target_animation(string target_anime, bool is_interacting)
-        {
-            anime.applyRootMotion = is_interacting;
-            anime.SetBool("is_interacting", is_interacting);
-            anime.CrossFade(target_anime, 0.2f);
-        }
 
         public void canrotate()
         {

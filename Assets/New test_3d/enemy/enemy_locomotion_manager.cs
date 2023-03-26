@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace sg
 {
     public class enemy_locomotion_manager : MonoBehaviour
     {
         enemy_manager enemy_mng;
+        enemy_animation_manager en_anime_mng;
+
+        NavMeshAgent navmeshagent;
 
         public character_stats cur_target;
         public LayerMask detection_layer;
 
+        public float distance_from_target;
+        public float stopping_distance = 0.5f;
+
         private void Awake()
         {
             enemy_mng = GetComponent<enemy_manager>();
+            en_anime_mng = GetComponent<enemy_animation_manager>();
+            navmeshagent = GetComponent<NavMeshAgent>();
         }
         public void handle_detection()
         {
@@ -34,6 +43,27 @@ namespace sg
                     {
                         cur_target = ch_stats;
                     }
+                }
+            }
+        }
+
+        public void handle_move_to_target()
+        {
+            Vector3 target_dir = cur_target.transform.position - transform.position;
+            distance_from_target = Vector3.Distance(cur_target.transform.position, transform.position);
+            float viewable_angle = Vector3.Angle(target_dir, transform.forward);
+
+            // 행동을 취할시, 움직임 멈춤
+            if (enemy_mng.is_preforming_action)
+            {
+                en_anime_mng.anime.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
+                navmeshagent.enabled = false;
+            }
+            else
+            {
+                if (distance_from_target > stopping_distance)
+                {
+                    en_anime_mng.anime.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
                 }
             }
         }
