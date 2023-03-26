@@ -9,20 +9,27 @@ namespace sg
     {
         enemy_manager enemy_mng;
         enemy_animation_manager en_anime_mng;
-
+        public Rigidbody en_rigid;
         NavMeshAgent navmeshagent;
 
         public character_stats cur_target;
         public LayerMask detection_layer;
 
         public float distance_from_target;
-        public float stopping_distance = 0.5f;
+        public float stopping_distance = 1f;
 
+        public float rotation_speed = 15;
         private void Awake()
         {
             enemy_mng = GetComponent<enemy_manager>();
             en_anime_mng = GetComponent<enemy_animation_manager>();
-            navmeshagent = GetComponent<NavMeshAgent>();
+            en_rigid = GetComponent<Rigidbody>();
+            navmeshagent = GetComponentInChildren<NavMeshAgent>();
+        }
+        private void Start()
+        {
+            navmeshagent.enabled = false;
+            en_rigid.isKinematic = false;
         }
         public void handle_detection()
         {
@@ -56,15 +63,56 @@ namespace sg
             // 행동을 취할시, 움직임 멈춤
             if (enemy_mng.is_preforming_action)
             {
-                en_anime_mng.anime.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
+                en_anime_mng.anime.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
                 navmeshagent.enabled = false;
             }
             else
             {
                 if (distance_from_target > stopping_distance)
                 {
-                    en_anime_mng.anime.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
+                    en_anime_mng.anime.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
                 }
+                else if(distance_from_target <= stopping_distance)
+                {
+                    en_anime_mng.anime.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+                }
+            }
+
+            handle_rotate_towards_target();
+
+            //transform.position = new Vector3(transform.position.x, navmeshagent.transform.position.y, transform.position.z);
+            navmeshagent.transform.localPosition = Vector3.zero;
+            navmeshagent.transform.localRotation = Quaternion.identity;
+        }
+
+        private void handle_rotate_towards_target()
+        {
+            // 수동적이게 회전
+            if (enemy_mng.is_preforming_action)
+            {
+                Vector3 dir = cur_target.transform.position - transform.position;
+                dir.y = 0;
+                dir.Normalize();
+
+                if(dir == Vector3.zero)
+                {
+                    dir = transform.forward;
+                }
+
+                Quaternion target_rotation = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, target_rotation, rotation_speed / Time.deltaTime);
+            }
+            // 네비 따라서 회전
+            else
+            {
+                Vector3 relative_dir = transform.InverseTransformDirection(navmeshagent.desiredVelocity);
+                Vector3 target_velocity = en_rigid.velocity;
+
+                navmeshagent.enabled = true;
+                navmeshagent.SetDestination(cur_target.transform.position);
+                en_rigid.velocity = target_velocity;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, navmeshagent.transform.rotation, rotation_speed / Time.deltaTime);
             }
         }
     }

@@ -21,13 +21,22 @@ namespace sg
         }
         private void Update()
         {
+            
+        }
+        private void FixedUpdate()
+        {
             handle_cur_action();
+            
         }
         private void handle_cur_action()
         {
             if(enemy_Locomotion_mng.cur_target == null)
             {
                 enemy_Locomotion_mng.handle_detection();
+            }
+            else
+            {
+                enemy_Locomotion_mng.handle_move_to_target();
             }
         }
         private void OnDrawGizmosSelected()
