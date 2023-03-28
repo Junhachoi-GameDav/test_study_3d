@@ -19,10 +19,7 @@ namespace sg
         {
             enemy_Locomotion_mng = GetComponent<enemy_locomotion_manager>();
         }
-        private void Update()
-        {
-            
-        }
+        
         private void FixedUpdate()
         {
             handle_cur_action();
@@ -34,11 +31,19 @@ namespace sg
             {
                 enemy_Locomotion_mng.handle_detection();
             }
-            else
+            else if(enemy_Locomotion_mng.distance_from_target >= enemy_Locomotion_mng.stopping_distance)
             {
                 enemy_Locomotion_mng.handle_move_to_target();
             }
+            else if(enemy_Locomotion_mng.distance_from_target <= enemy_Locomotion_mng.stopping_distance)
+            {
+                //attack
+            }
         }
+        #region attacks
+
+        #endregion
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
