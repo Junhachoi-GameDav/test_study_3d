@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4f152d02b8c72419e84647d5ac4761, type: 3}
+  m_Name: en_atk_01
+  m_EditorClassIdentifier: 
+  action_animation: en_atk_01
+  attack_score: 3
+  recovery_time: 2
+  max_attack_angle: 35
+  min_attack_angle: -35
+  min_distance_needed_to_atk: 0
+  max_distance_needed_to_atk: 3

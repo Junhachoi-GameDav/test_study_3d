@@ -56,6 +56,10 @@ namespace sg
 
         public void handle_move_to_target()
         {
+            if (enemy_mng.is_preforming_action)
+            {
+                return;
+            }
             Vector3 target_dir = cur_target.transform.position - transform.position;
             distance_from_target = Vector3.Distance(cur_target.transform.position, transform.position);
             float viewable_angle = Vector3.Angle(target_dir, transform.forward);
