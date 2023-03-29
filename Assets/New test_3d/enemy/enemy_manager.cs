@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace sg
 {
@@ -10,20 +11,22 @@ namespace sg
         enemy_animation_manager en_animaion_mng;
         enemy_stats en_stats;
 
+        public NavMeshAgent navmeshagent;
+        public Rigidbody en_rigid;
         public stats cur_stats;
         public character_stats cur_target;
 
         public bool is_preforming_action;
-
-        public enemy_attack_ations[] enemy_atk_ations;
-        public enemy_attack_ations cur_attack;
-
+        public float distance_from_target;
+        public float rotation_speed = 15;
+        public float max_attack_range = 1.5f;
 
         [Header("A.I settings")]
         public float detection_radius =20;
         //눈으로 보듯 = 뒤에있으면 안보이듯
         public float max_detection_angle = 50;
         public float min_detection_angle = -50;
+        public float viewable_angle;
 
         public float cur_recovery_time = 0;
 
@@ -32,6 +35,13 @@ namespace sg
             enemy_Locomotion_mng = GetComponent<enemy_locomotion_manager>();
             en_animaion_mng = GetComponent<enemy_animation_manager>();
             en_stats = GetComponent<enemy_stats>();
+            navmeshagent = GetComponentInChildren<NavMeshAgent>();
+            en_rigid = GetComponent<Rigidbody>();
+            navmeshagent.enabled = false;
+        }
+        private void Start()
+        {
+            en_rigid.isKinematic = false;
         }
         private void Update()
         {
