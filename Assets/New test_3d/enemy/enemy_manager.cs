@@ -8,6 +8,11 @@ namespace sg
     {
         enemy_locomotion_manager enemy_Locomotion_mng;
         enemy_animation_manager en_animaion_mng;
+        enemy_stats en_stats;
+
+        public stats cur_stats;
+        public character_stats cur_target;
+
         public bool is_preforming_action;
 
         public enemy_attack_ations[] enemy_atk_ations;
@@ -26,6 +31,7 @@ namespace sg
         {
             enemy_Locomotion_mng = GetComponent<enemy_locomotion_manager>();
             en_animaion_mng = GetComponent<enemy_animation_manager>();
+            en_stats = GetComponent<enemy_stats>();
         }
         private void Update()
         {
@@ -33,11 +39,21 @@ namespace sg
         }
         private void FixedUpdate()
         {
-            handle_cur_action();
+            handle_stats_machine();
             
         }
-        private void handle_cur_action()
+        private void handle_stats_machine()
         {
+            if(cur_stats != null)
+            {
+                stats next_stats = cur_stats.tick(this, en_stats, en_animaion_mng);
+
+                if(next_stats != null)
+                {
+                    switch_to_next_stats(next_stats);
+                }
+            }
+            /*
             if(enemy_Locomotion_mng.cur_target != null)
             {
                 enemy_Locomotion_mng.distance_from_target =
@@ -56,6 +72,12 @@ namespace sg
             {
                 attack_target();
             }
+            */
+        }
+
+        private void switch_to_next_stats(stats _stats)
+        {
+            cur_stats = _stats;
         }
 
         private void handle_recovery_time()
@@ -76,6 +98,7 @@ namespace sg
         #region attacks
         private void attack_target()
         {
+            /*
             if (is_preforming_action)
             {
                 return;
@@ -92,9 +115,11 @@ namespace sg
                 en_animaion_mng.player_target_animation(cur_attack.action_animation, true);
                 cur_attack = null;
             }
+            */
         }
         private void get_new_attack()
         {
+            /*
             Vector3 target_dir = enemy_Locomotion_mng.cur_target.transform.position - transform.position;
             float viewable_angle = Vector3.Angle(target_dir, transform.forward);
             enemy_Locomotion_mng.distance_from_target = Vector3.Distance(enemy_Locomotion_mng.cur_target.transform.position, transform.position);
@@ -142,7 +167,9 @@ namespace sg
                     }
                 }
             }
+            */
         }
+            
         #endregion
 
         private void OnDrawGizmosSelected()
