@@ -1187,6 +1187,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f293a2dcc753a4a489fefe7f8f312d69, type: 3}
+--- !u!1 &855511293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855511294}
+  - component: {fileID: 855511295}
+  m_Layer: 0
+  m_Name: ambush_stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &855511294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855511293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3728552834854453967}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &855511295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855511293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fe0f8a451d03646968e65d31bc9006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_sleeping: 0
+  detection_radius: 2
+  sleep_animation: 
+  wake_animation: 
+  stats_pur_target: {fileID: 693161256}
 --- !u!4 &958125136
 Transform:
   m_ObjectHideFlags: 0
@@ -8332,8 +8381,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a5730b0bfb11bda439a474b17807152d, type: 2}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 328509162, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 855511294}
   m_SourcePrefab: {fileID: 100100000, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
+--- !u!4 &3728552834854453967 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 328509162, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
+  m_PrefabInstance: {fileID: 3728552834854453966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3748546780507637129
 MonoBehaviour:
   m_ObjectHideFlags: 0
