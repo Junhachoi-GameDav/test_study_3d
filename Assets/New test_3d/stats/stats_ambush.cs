@@ -11,13 +11,13 @@ namespace sg
         public string sleep_animation;
         public string wake_animation;
 
-        LayerMask detection_layer;
+        public LayerMask detection_layer;
 
         public stats_pursue_target stats_pur_target;
 
         public override stats tick(enemy_manager enemy_mng, enemy_stats en_stats, enemy_animation_manager en_anime_mng)
         {
-            if(is_sleeping && enemy_mng.is_preforming_action == false)
+            if(is_sleeping && enemy_mng.is_interacting == false)
             {
                 en_anime_mng.player_target_animation(sleep_animation, true);
             }

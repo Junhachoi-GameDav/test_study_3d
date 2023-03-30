@@ -17,6 +17,7 @@ namespace sg
         public character_stats cur_target;
 
         public bool is_preforming_action;
+        public bool is_interacting;
         public float distance_from_target;
         public float rotation_speed = 15;
         public float max_attack_range = 1.5f;
@@ -46,6 +47,7 @@ namespace sg
         private void Update()
         {
             handle_recovery_time();
+            is_interacting = en_animaion_mng.anime.GetBool("is_interacting");
         }
         private void FixedUpdate()
         {

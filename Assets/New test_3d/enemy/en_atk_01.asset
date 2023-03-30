@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action_animation: en_atk_01
   attack_score: 3
-  recovery_time: 2
-  max_attack_angle: 35
-  min_attack_angle: -35
+  recovery_time: 1.8
+  max_attack_angle: 40
+  min_attack_angle: -40
   min_distance_needed_to_atk: 0
   max_distance_needed_to_atk: 3
