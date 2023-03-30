@@ -32,10 +32,10 @@ namespace sg
                 if(char_stats != null)
                 {
                     Vector3 target_dir = char_stats.transform.position - enemy_mng.transform.position;
-                    enemy_mng.viewable_angle = Vector3.Angle(target_dir, enemy_mng.transform.forward);
+                    float viewable_angle = Vector3.Angle(target_dir, enemy_mng.transform.forward);
 
-                    if(enemy_mng.viewable_angle > enemy_mng.min_detection_angle &&
-                        enemy_mng.viewable_angle < enemy_mng.max_detection_angle)
+                    if(viewable_angle > enemy_mng.min_detection_angle &&
+                        viewable_angle < enemy_mng.max_detection_angle)
                     {
                         enemy_mng.cur_target = char_stats;
                         is_sleeping = false;

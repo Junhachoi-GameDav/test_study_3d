@@ -18,7 +18,7 @@ namespace sg
 
         public bool is_preforming_action;
         public bool is_interacting;
-        public float distance_from_target;
+        public float viewable_angle;
         public float rotation_speed = 15;
         public float max_attack_range = 1.5f;
 
@@ -27,7 +27,6 @@ namespace sg
         //눈으로 보듯 = 뒤에있으면 안보이듯
         public float max_detection_angle = 50;
         public float min_detection_angle = -50;
-        public float viewable_angle;
 
         public float cur_recovery_time = 0;
 

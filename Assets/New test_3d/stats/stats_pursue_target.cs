@@ -15,14 +15,15 @@ namespace sg
             //if within atk range, etc
             if (enemy_mng.is_preforming_action)
             {
+                en_anime_mng.anime.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
                 return this;
             }
-            Vector3 target_dir = enemy_mng.cur_target.transform.position - transform.position;
-            enemy_mng.distance_from_target = Vector3.Distance(enemy_mng.cur_target.transform.position, transform.position);
-            float viewable_angle = Vector3.Angle(target_dir, transform.forward);
+            Vector3 target_dir = enemy_mng.cur_target.transform.position - enemy_mng.transform.position;
+            float distance_from_target = Vector3.Distance(enemy_mng.cur_target.transform.position, enemy_mng.transform.position);
+            float viewable_angle = Vector3.Angle(target_dir, enemy_mng.transform.forward);
 
             // 행동을 취할시, 움직임 멈춤
-            if (enemy_mng.distance_from_target > enemy_mng.max_attack_range)
+            if (distance_from_target > enemy_mng.max_attack_range)
             {
                 en_anime_mng.anime.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
             }
@@ -34,7 +35,7 @@ namespace sg
             enemy_mng.navmeshagent.transform.localPosition = Vector3.zero;
             enemy_mng.navmeshagent.transform.localRotation = Quaternion.identity;
 
-            if(enemy_mng.distance_from_target <= enemy_mng.max_attack_range)
+            if(distance_from_target <= enemy_mng.max_attack_range)
             {
                 return stats_co_stance;
             }
@@ -71,7 +72,7 @@ namespace sg
                 enemy_mng.navmeshagent.SetDestination(enemy_mng.cur_target.transform.position);
                 enemy_mng.en_rigid.velocity = target_velocity;
 
-                enemy_mng.transform.rotation = Quaternion.Slerp(transform.rotation, 
+                enemy_mng.transform.rotation = Quaternion.Slerp(enemy_mng.transform.rotation, 
                     enemy_mng.navmeshagent.transform.rotation, enemy_mng.rotation_speed / Time.deltaTime);
             }
         }

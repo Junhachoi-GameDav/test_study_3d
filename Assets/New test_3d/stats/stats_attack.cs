@@ -13,7 +13,9 @@ namespace sg
         public override stats tick(enemy_manager enemy_mng, enemy_stats en_stats, enemy_animation_manager en_anime_mng)
         {
             Vector3 target_dir = enemy_mng.cur_target.transform.position - transform.position;
+            float distance_from_target = Vector3.Distance(enemy_mng.cur_target.transform.position, enemy_mng.transform.position);
             float viewable_angle = Vector3.Angle(target_dir, transform.forward);
+            enemy_mng.viewable_angle = Vector3.Angle(target_dir, transform.forward);
 
             if (enemy_mng.is_preforming_action)
             {
@@ -23,15 +25,15 @@ namespace sg
             if(cur_atk_ations != null)
             {
                 //가까이 있을시 새로운 공격
-                if(enemy_mng.distance_from_target < cur_atk_ations.min_distance_needed_to_atk)
+                if(distance_from_target < cur_atk_ations.min_distance_needed_to_atk)
                 {
                     return this;
                 }
                 // 가까워지면 어택
-                else if(enemy_mng.distance_from_target < cur_atk_ations.max_distance_needed_to_atk)
+                else if(distance_from_target < cur_atk_ations.max_distance_needed_to_atk)
                 {
-                    if(enemy_mng.viewable_angle <= cur_atk_ations.max_attack_angle&&
-                        enemy_mng.viewable_angle >= cur_atk_ations.min_attack_angle)
+                    if(viewable_angle <= cur_atk_ations.max_attack_angle&&
+                        viewable_angle >= cur_atk_ations.min_attack_angle)
                     {
                         if(enemy_mng.cur_recovery_time <=0 && enemy_mng.is_preforming_action == false)
                         {
@@ -59,7 +61,7 @@ namespace sg
 
             Vector3 target_dir = enemy_mng.cur_target.transform.position - transform.position;
             float viewable_angle = Vector3.Angle(target_dir, transform.forward);
-            enemy_mng.distance_from_target = Vector3.Distance(enemy_mng.cur_target.transform.position, transform.position);
+            float distance_from_target = Vector3.Distance(enemy_mng.cur_target.transform.position, transform.position);
 
             int max_score = 0;
 
@@ -67,8 +69,8 @@ namespace sg
             {
                 enemy_attack_ations en_atk_ations = enemy_atk_ations[i];
 
-                if (enemy_mng.distance_from_target <= en_atk_ations.max_distance_needed_to_atk &&
-                    enemy_mng.distance_from_target >= en_atk_ations.min_distance_needed_to_atk)
+                if (distance_from_target <= en_atk_ations.max_distance_needed_to_atk &&
+                    distance_from_target >= en_atk_ations.min_distance_needed_to_atk)
                 {
                     if (viewable_angle <= en_atk_ations.max_distance_needed_to_atk &&
                         viewable_angle >= en_atk_ations.min_distance_needed_to_atk)
@@ -85,8 +87,8 @@ namespace sg
             {
                 enemy_attack_ations en_atk_ations = enemy_atk_ations[i];
 
-                if (enemy_mng.distance_from_target <= en_atk_ations.max_distance_needed_to_atk &&
-                    enemy_mng.distance_from_target >= en_atk_ations.min_distance_needed_to_atk)
+                if (distance_from_target <= en_atk_ations.max_distance_needed_to_atk &&
+                    distance_from_target >= en_atk_ations.min_distance_needed_to_atk)
                 {
                     if (viewable_angle <= en_atk_ations.max_distance_needed_to_atk &&
                         viewable_angle >= en_atk_ations.min_distance_needed_to_atk)

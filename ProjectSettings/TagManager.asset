@@ -19,7 +19,7 @@ TagManager:
   - character
   - environment
   - controller
-  - 
+  - character_collision_blocker
   - 
   - 
   - 
