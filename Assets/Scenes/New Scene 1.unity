@@ -8498,11 +8498,11 @@ PrefabInstance:
       objectReference: {fileID: 102904033}
     - target: {fileID: 1752840620, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
       propertyPath: m_Speed
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1752840620, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
       propertyPath: m_AngularSpeed
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2006323735, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
       propertyPath: cur_atk_ations
@@ -8584,6 +8584,10 @@ PrefabInstance:
       propertyPath: player_cam
       value: 
       objectReference: {fileID: 1480222919}
+    - target: {fileID: 5519975077775515868, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
+      propertyPath: max_health
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5519975077775515869, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
       propertyPath: cur_stats
       value: 

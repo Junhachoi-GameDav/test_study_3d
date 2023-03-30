@@ -31,7 +31,7 @@ namespace sg
 
             handle_rotate_towards_target(enemy_mng);
 
-            //transform.position = new Vector3(transform.position.x, navmeshagent.transform.position.y, transform.position.z);
+            enemy_mng.transform.position = new Vector3(transform.position.x, enemy_mng.navmeshagent.transform.position.y, transform.position.z);
             enemy_mng.navmeshagent.transform.localPosition = Vector3.zero;
             enemy_mng.navmeshagent.transform.localRotation = Quaternion.identity;
 
