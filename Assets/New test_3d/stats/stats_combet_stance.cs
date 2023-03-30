@@ -18,6 +18,7 @@ namespace sg
             }
 
 
+
             if(enemy_mng.cur_recovery_time <=0 && distance_from_target <= enemy_mng.max_attack_range)
             {
                 return stats_atk;

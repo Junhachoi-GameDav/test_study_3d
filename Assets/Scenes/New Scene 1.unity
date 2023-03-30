@@ -8597,6 +8597,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 52a6fe6d0ee4bc54483f81d7ef50168e, type: 2}
     - target: {fileID: 5519975077775515869, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
+      propertyPath: rotation_speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519975077775515869, guid: dee15632bfd246e42987f2acc27637fa, type: 3}
       propertyPath: enemy_atk_ations.Array.size
       value: 3
       objectReference: {fileID: 0}

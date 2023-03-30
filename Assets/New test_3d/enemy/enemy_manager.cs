@@ -18,7 +18,7 @@ namespace sg
 
         public bool is_preforming_action;
         public bool is_interacting;
-        public float viewable_angle;
+        //public float viewable_angle;
         public float rotation_speed = 15;
         public float max_attack_range = 1.5f;
 
@@ -106,83 +106,6 @@ namespace sg
                 }
             }
         }
-        #region attacks
-        private void attack_target()
-        {
-            /*
-            if (is_preforming_action)
-            {
-                return;
-            }
-
-            if(cur_attack == null)
-            {
-                get_new_attack();
-            }
-            else
-            {
-                is_preforming_action = true;
-                cur_recovery_time = cur_attack.recovery_time;
-                en_animaion_mng.player_target_animation(cur_attack.action_animation, true);
-                cur_attack = null;
-            }
-            */
-        }
-        private void get_new_attack()
-        {
-            /*
-            Vector3 target_dir = enemy_Locomotion_mng.cur_target.transform.position - transform.position;
-            float viewable_angle = Vector3.Angle(target_dir, transform.forward);
-            enemy_Locomotion_mng.distance_from_target = Vector3.Distance(enemy_Locomotion_mng.cur_target.transform.position, transform.position);
-
-            int max_score = 0;
-
-            for (int i = 0; i < enemy_atk_ations.Length; i++)
-            {
-                enemy_attack_ations en_atk_ations = enemy_atk_ations[i];
-
-                if(enemy_Locomotion_mng.distance_from_target <= en_atk_ations.max_distance_needed_to_atk &&
-                    enemy_Locomotion_mng.distance_from_target >= en_atk_ations.min_distance_needed_to_atk)
-                {
-                    if(viewable_angle <= en_atk_ations.max_distance_needed_to_atk &&
-                        viewable_angle >= en_atk_ations.min_distance_needed_to_atk)
-                    {
-                        max_score += en_atk_ations.attack_score;
-                    }
-                }
-            }
-
-            int random_value = Random.Range(0, max_score);
-            int temp_score = 0;
-
-            for (int i = 0; i < enemy_atk_ations.Length; i++)
-            {
-                enemy_attack_ations en_atk_ations = enemy_atk_ations[i];
-
-                if (enemy_Locomotion_mng.distance_from_target <= en_atk_ations.max_distance_needed_to_atk &&
-                    enemy_Locomotion_mng.distance_from_target >= en_atk_ations.min_distance_needed_to_atk)
-                {
-                    if (viewable_angle <= en_atk_ations.max_distance_needed_to_atk &&
-                        viewable_angle >= en_atk_ations.min_distance_needed_to_atk)
-                    {
-                        if(cur_attack != null)
-                        {
-                            return;
-                        }
-
-                        temp_score += en_atk_ations.attack_score;
-                        if(temp_score > random_value)
-                        {
-                            cur_attack = en_atk_ations;
-                        }
-                    }
-                }
-            }
-            */
-        }
-            
-        #endregion
-
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
