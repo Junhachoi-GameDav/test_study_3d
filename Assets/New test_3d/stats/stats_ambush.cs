@@ -35,7 +35,7 @@ namespace sg
                     float viewable_angle = Vector3.Angle(target_dir, enemy_mng.transform.forward);
 
                     if(viewable_angle > enemy_mng.min_detection_angle &&
-                        viewable_angle < enemy_mng.max_detection_angle)
+                        viewable_angle < enemy_mng.max_detection_angle || en_stats.cur_health < en_stats.max_health)
                     {
                         enemy_mng.cur_target = char_stats;
                         is_sleeping = false;

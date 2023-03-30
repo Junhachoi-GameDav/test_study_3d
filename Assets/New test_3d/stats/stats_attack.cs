@@ -14,7 +14,7 @@ namespace sg
         {
             Vector3 target_dir = enemy_mng.cur_target.transform.position - transform.position;
             float distance_from_target = Vector3.Distance(enemy_mng.cur_target.transform.position, enemy_mng.transform.position);
-            float viewable_angle = Vector3.Angle(target_dir, transform.forward);
+            //float viewable_angle = Vector3.Angle(target_dir, transform.forward);
             enemy_mng.viewable_angle = Vector3.Angle(target_dir, transform.forward);
 
             if (enemy_mng.is_preforming_action)
@@ -32,8 +32,8 @@ namespace sg
                 // 가까워지면 어택
                 else if(distance_from_target < cur_atk_ations.max_distance_needed_to_atk)
                 {
-                    if(viewable_angle <= cur_atk_ations.max_attack_angle&&
-                        viewable_angle >= cur_atk_ations.min_attack_angle)
+                    if(enemy_mng.viewable_angle <= cur_atk_ations.max_attack_angle&&
+                        enemy_mng.viewable_angle >= cur_atk_ations.min_attack_angle)
                     {
                         if(enemy_mng.cur_recovery_time <=0 && enemy_mng.is_preforming_action == false)
                         {
